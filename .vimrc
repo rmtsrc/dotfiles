@@ -7,10 +7,14 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-if $TERM == "xterm-256color" || $TERM == "screen-256color"
-  set t_Co=256
-  colorscheme zenburn
-endif
+" if $TERM == "xterm-256color" || $TERM == "screen-256color"
+"   set t_Co=256
+"   colorscheme zenburn
+" endif
+
+set background=dark
+set guifont=Source\ Code\ Pro:h16
+colorscheme monokai
 
 " more natural (to me) cmdline navigation
 :cnoremap <C-A> <Home>
@@ -25,6 +29,29 @@ set nocompatible
 " Allow hiding modified buffers (plays nice with Ctrl-P plugin)
 set hidden
 
+if has("gui_macvim")
+  set guioptions=gmrLe
+  " This mapping makes Ctrl-Tab switch between tabs.
+  " Ctrl-Shift-Tab goes the other way.
+  noremap <C-Tab> :tabnext<CR>
+  noremap <C-S-Tab> :tabprev<CR>
+endif
+
+" Map shift-tab in vim to inverse tab in Vim
+" for command mode
+nmap <S-Tab> <<
+" for insert mode
+imap <S-Tab> <Esc><<i
+
+" ctrlp plugin
+let g:ctrlp_reuse_window = 1
+set wildignore+=node_modules/**,coverage/**,bdd/vendor/**,bdd/page_dumps/**
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\.git$\|\.hg$\|\.svn$\|coverage$\|node_modules$\|bower_components$\|vendor$\|page_dumps$\|quality$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+
 " Highlight tabs and trailing spaces
 set listchars=tab:>\ ,trail:·,extends:>,precedes:<,nbsp:+
 set list
@@ -38,6 +65,8 @@ set nu
 
 " Gently highlight the current line
 set cursorline
+
+set spl=en_gb spell
 
 "toggle paste mode
 nmap <leader>o :set paste!<CR>
@@ -54,6 +83,8 @@ nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 "everybody's buffering...
 nmap <C-b> :CtrlPBuffer<CR>
 nmap <F9> :CtrlPMRU<CR>
+let g:ctrlp_reuse_window = 1
+nmap <C-e> :e#<CR>
 nmap <leader>n :bnext<CR>
 nmap <leader>p :bprev<CR>
 
@@ -79,6 +110,9 @@ let g:ctrlp_custom_ignore = {
     \ 'link': '',
     \}
 
+"Sublime PhpStorm keymap
+nmap <C-c> :TComment<CR>
+nmap <C-d> yyp
 
 " * Enable vim-airline tabline
 let g:airline#extensions#tabline#enabled = 1

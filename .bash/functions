@@ -141,7 +141,6 @@ webmify(){
 docker-up(){
 	docker-machine start default
 	eval "$(docker-machine env default)"
-	docker-machine ssh default 'sudo mkdir -p /etc/docker/certs.d/tools1.provision.lhr.shzcld.com:5000 && sudo sh -c "curl http://tools1.provision.lhr.shzcld.com/tools1.provision.lhr.shzcld.com.crt > /etc/docker/certs.d/tools1.provision.lhr.shzcld.com:5000/ca.crt"'
 }
 
 docker-bash(){

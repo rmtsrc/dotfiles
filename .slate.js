@@ -1,3 +1,5 @@
+slate.config("menuBarIconHidden", true);
+
 var pushRight = slate.operation("push", {
   "direction": "right",
   "style": "bar-resize:screenSizeX/2"

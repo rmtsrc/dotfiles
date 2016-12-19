@@ -138,9 +138,13 @@ webmify(){
 	ffmpeg -i $1 -vcodec libvpx -acodec libvorbis -isync -copyts -aq 80 -threads 3 -qmax 30 -y $2 $1.webm
 }
 
+git-up(){
+  git checkout master && git pr && git checkout - && git rebase master
+}
+
 docker-up(){
-	docker-machine start default
-	eval "$(docker-machine env default)"
+	docker-machine start dinghy
+	eval $(dinghy env)
 }
 
 docker-bash(){

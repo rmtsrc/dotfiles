@@ -1,5 +1,7 @@
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:~/bin"
+export PATH="/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:~/bin::/usr/local/opt/go/libexec/bin"
 MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 #EDITOR='vim'
 #EDITOR='/usr/local/bin/mvim -f'
@@ -12,8 +14,3 @@ export LANGUAGE="en_GB.UTF-8"
 # Colours
 export CLICOLOR='true'
 export LSCOLORS="gxfxcxdxbxegedabagacad"
-
-export ANDROID_HOME=/Users/Seb/Library/Android/sdk
-
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"

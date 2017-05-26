@@ -138,6 +138,16 @@ webmify(){
 	ffmpeg -i $1 -vcodec libvpx -acodec libvorbis -isync -copyts -aq 80 -threads 3 -qmax 30 -y $2 $1.webm
 }
 
+gpg_init () {
+  if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+      source ~/.gnupg/.gpg-agent-info
+      export GPG_AGENT_INFO
+  else
+      eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+  fi
+}
+gpg_init
+
 git-up(){
   git checkout master && git pr && git checkout - && git rebase master
 }

@@ -25,7 +25,8 @@ alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'
 
 # Git
 alias git-pr="git stash && git pr && git stash pop"
-alias git-purge='git fetch --all -p && git br --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d'
+alias git-purge='git fetch --all -p && git branch --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d'
+alias gp="git pull origin && git-purge"
 
 # Docker
 alias docker-quick-start="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
@@ -50,4 +51,5 @@ alias phpcs="find . -name *.php -exec phpcs --standard=Zend '{}' \;"
 
 # Others
 alias fuck='sudo $(history -p \!\!)'
+alias change-ssh-pw='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'

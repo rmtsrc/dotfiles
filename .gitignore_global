@@ -16,3 +16,5 @@ Icon
 
 # Others
 .idea
+npm-debug.log
+*.orig

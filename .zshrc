@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/43992280/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -107,7 +107,6 @@ alias git-purge='git fetch --all -p && git branch --merged | grep -v "\*" | grep
 alias gp="git pull origin && git-purge"
 
 # Docker
-alias docker-quick-start="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
 alias fig="docker-compose"
 alias fig-kill-rm="fig kill && fig rm -f"
 alias docker-restart-stopped="docker restart \$(docker ps -a -q -f status=exited)"

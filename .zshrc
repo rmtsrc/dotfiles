@@ -52,7 +52,7 @@ ZSH_THEME="miloshadzic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew cask common-aliases docker docker-compose emoji-clock git git-extras git-flow gitignore gpg-agent history jsontools node npm nvm nyan osx react-native rsync ssh-agent terraform vagrant yarn z zsh-autosuggestions)
+plugins=(brew common-aliases docker docker-compose emoji-clock git git-extras git-flow gitignore gpg-agent history jsontools node npm nvm nyan osx react-native rsync ssh-agent terraform vagrant yarn z zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,6 +84,16 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+# brew zsh plugins
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=(/usr/local/share/zsh-completions $fpath)
+source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Count files under folders
 alias count='for i in *; do [ -d "$i" ] && echo "$i `find "$i" | grep -v .svn | wc -l`"; done | sort -k2 -n'

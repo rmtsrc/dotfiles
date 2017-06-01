@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:~/bin::/usr/local/opt/go/libexec/bin"
+export PATH="/Users/Seb/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:~/bin"
 MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk

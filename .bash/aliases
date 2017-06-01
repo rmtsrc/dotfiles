@@ -20,6 +20,7 @@ alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args `pwd`
 alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias gource='gource --multi-sampling --seconds-per-day 3 --loop --key --user-image-dir .git/avatar/ --follow-user "Seb Flippence"'
+alias cast='chromecast -i en1'
 
 alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'"
 
@@ -44,6 +45,7 @@ alias mac-up='sudo softwareupdate --install --all'
 alias brew-cask-upgrade='for c in `brew cask list | grep -v "(\!)"`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 alias brew-up='brew update && brew upgrade && brew-cask-upgrade && brew cask cleanup && brew cleanup'
 alias brew-fix='sudo chown -R $USER /usr/local'
+alias nvm-up='nvm install node && nvm alias default node'
 
 # Code
 alias xmlpp='xmllint --format -'

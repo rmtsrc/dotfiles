@@ -85,7 +85,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+# System setup
+export PATH="/Users/Seb/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:~/bin"
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 # brew zsh plugins
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -129,11 +133,12 @@ alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
 
 # Updates, Homebrew & Cask
-alias update='mac-up && brew-up && apm update --confirm false'
+alias update='mac-up && brew-up && nvm-up && apm update --confirm false'
 alias mac-up='sudo softwareupdate --install --all'
 alias brew-cask-upgrade='for c in `brew cask list | grep -v "(\!)"`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 alias brew-up='brew update && brew upgrade && brew-cask-upgrade && brew cask cleanup && brew cleanup'
 alias brew-fix='sudo chown -R $USER /usr/local'
+alias nvm-up='nvm install node && nvm alias default node'
 
 # Others
 alias change-ssh-pw='ssh-keygen -f ~/.ssh/id_rsa -p'

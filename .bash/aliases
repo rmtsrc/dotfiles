@@ -40,7 +40,7 @@ alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
 
 # Updates, Homebrew & Cask
-alias update='mac-up && brew-up && apm update --confirm false'
+alias update='mac-up && brew-up && nvm-up && apm update --confirm false'
 alias mac-up='sudo softwareupdate --install --all'
 alias brew-cask-upgrade='for c in `brew cask list | grep -v "(\!)"`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 alias brew-up='brew update && brew upgrade && brew-cask-upgrade && brew cask cleanup && brew cleanup'

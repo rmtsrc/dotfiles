@@ -95,6 +95,9 @@ source /usr/local/share/zsh-history-substring-search/zsh-history-substring-searc
 source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Better ls
+alias l="ls -lha"
+
 # Count files under folders
 alias count='for i in *; do [ -d "$i" ] && echo "$i `find "$i" | grep -v .svn | wc -l`"; done | sort -k2 -n'
 

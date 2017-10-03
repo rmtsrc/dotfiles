@@ -75,7 +75,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # System setup
-export PATH="/Users/Seb/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:~/bin"
+export PATH="/Users/Seb/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:~/bin"
 
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
@@ -122,6 +122,10 @@ alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'
 # Git
 alias git-purge='git fetch --all -p && git branch --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d'
 alias gp="git pull origin && git-purge"
+alias gstash="git add . && git stash"
+alias gpop="git stash pop && git reset"
+alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
+alias gclean="git clean -fdXi"
 
 # Docker
 alias fig="docker-compose"
@@ -133,13 +137,31 @@ alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
 
 # Updates, Homebrew & Cask
-alias update='mac-up && brew-up && nvm-up && apm update --confirm false'
+alias update='mac-up && brew-up && atom-up'
 alias mac-up='sudo softwareupdate --install --all'
-alias brew-cask-upgrade='for c in `brew cask list | grep -v "(\!)"`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
-alias brew-up='brew update && brew upgrade && brew-cask-upgrade && brew cask cleanup && brew cleanup'
+alias brew-up='brew update && brew upgrade && brew cu -acy && brew cask cleanup && brew cleanup'
 alias brew-fix='sudo chown -R $USER /usr/local'
+alias atom-up='apm update --confirm false'
 alias nvm-up='nvm install node && nvm alias default node'
+
+# GPG
+# Add the following to your shell init to set up gpg-agent automatically for every shell
+# export GPGKEY=""
+export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | cut -d= -f2 | sed -e 's/ //g')
+
+gpg_init () {
+  if ! pgrep -x "gpg-agent" > /dev/null
+  then
+      eval $(gpg-agent --daemon)
+  fi
+}
+gpg_init
+alias gpg-restart="killall gpg-agent && gpg_init"
 
 # Others
 alias change-ssh-pw='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'
+
+if [ -f ~/.bash/extra ]; then
+  source ~/.bash/extra
+fi

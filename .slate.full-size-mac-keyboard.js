@@ -119,7 +119,7 @@ var isFullscreen = function(win) {
 };
 
 
-slate.bind("home:ctrl", function(win) {
+slate.bind("left:ctrl,alt", function(win) {
   if (!win) {
     return;
   }
@@ -130,7 +130,7 @@ slate.bind("home:ctrl", function(win) {
   }
 });
 
-slate.bind("end:ctrl", function(win) {
+slate.bind("right:ctrl,alt", function(win) {
   if (!win) {
     return;
   }
@@ -142,7 +142,7 @@ slate.bind("end:ctrl", function(win) {
   }
 });
 
-slate.bind("pageUp:ctrl", function(win) {
+slate.bind("up:ctrl,alt", function(win) {
   if (!win) {
     return;
   }
@@ -154,7 +154,7 @@ slate.bind("pageUp:ctrl", function(win) {
   }
 });
 
-slate.bind("pageDown:ctrl", function(win) {
+slate.bind("down:ctrl,alt", function(win) {
   if (!win) {
     return;
   }
@@ -170,7 +170,7 @@ slate.bind("pageDown:ctrl", function(win) {
   }
 });
 
-slate.bind("right:ctrl,alt", function(win) {
+slate.bind("right:ctrl,alt,cmd", function(win) {
   if (!win) {
     return;
   }
@@ -181,7 +181,7 @@ slate.bind("right:ctrl,alt", function(win) {
   }));
 });
 
-slate.bind("left:ctrl,alt", function(win) {
+slate.bind("left:ctrl,alt,cmd", function(win) {
   if (!win) {
     return;
   }
@@ -192,14 +192,14 @@ slate.bind("left:ctrl,alt", function(win) {
   }));
 });
 
-slate.bind("up:ctrl,alt", function(win) {
+slate.bind("up:ctrl,alt,cmd", function(win) {
   if (!win) {
     return;
   }
   win.doOperation(pushTop);
 });
 
-slate.bind("down:ctrl,alt", function(win) {
+slate.bind("down:ctrl,alt,cmd", function(win) {
   if (!win) {
     return;
   }

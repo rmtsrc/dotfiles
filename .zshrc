@@ -122,8 +122,8 @@ alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'
 # Git
 alias git-purge='git fetch --all -p && git branch --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d'
 alias gp="git pull origin && git-purge"
-alias gstash="git add . && git stash"
-alias gpop="git stash pop && git reset"
+alias gstash="git add . && git stash && git status"
+alias gpop="git stash pop && git reset && git status"
 alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
 alias gclean="git clean -fdXi"
 

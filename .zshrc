@@ -99,6 +99,9 @@ source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Setup for iTerm
+set -g default-terminal "xterm-256color"
+
 # Better ls
 alias l="ls -lha"
 
@@ -108,6 +111,10 @@ alias count='for i in *; do [ -d "$i" ] && echo "$i `find "$i" | grep -v .svn | 
 # Start a simple HTTP server in current dir
 alias serve="python -m SimpleHTTPServer"
 
+# Cursor
+alias hide-cursor="tput civis"
+alias show-cursor="tput cnorm"
+
 # App links
 #alias vi="/usr/bin/vim"
 #alias vim="/usr/local/bin/mvim"
@@ -116,6 +123,7 @@ alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args `pwd`
 alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias gource='gource --multi-sampling --seconds-per-day 3 --loop --key --user-image-dir .git/avatar/ --follow-user "Seb Flippence"'
+alias hide-mscode-simile="sed -i '' 's/\.send-feedback{display:inline-block}/\.send-feedback{display:none}/' /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/out/vs/workbench/workbench.main.css"
 
 alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'"
 
@@ -126,6 +134,7 @@ alias gstash="git add . && git stash && git status"
 alias gpop="git stash pop && git reset && git status"
 alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
 alias gclean="git clean -fdXi"
+alias gms="git merge --squash"
 
 # Docker
 alias fig="docker-compose"
@@ -137,7 +146,7 @@ alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
 
 # Updates, Homebrew & Cask
-alias update='mac-up && brew-up && atom-up'
+alias update='mac-up && brew-up'
 alias mac-up='sudo softwareupdate --install --all'
 alias brew-up='brew update && brew upgrade && brew cu -acy && brew cask cleanup && brew cleanup'
 alias brew-fix='sudo chown -R $USER /usr/local'

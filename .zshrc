@@ -135,6 +135,7 @@ alias gpop="git stash pop && git reset && git status"
 alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
 alias gclean="git clean -fdXi"
 alias gms="git merge --squash"
+alias gcmsgc="git log -1 --pretty=%B | pbcopy"
 
 # Docker
 alias fig="docker-compose"
@@ -148,7 +149,7 @@ alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="a
 # Updates, Homebrew & Cask
 alias update='mac-up && brew-up'
 alias mac-up='sudo softwareupdate --install --all'
-alias brew-up='brew update && brew upgrade && brew cu -acy && brew cask cleanup && brew cleanup'
+alias brew-up='brew update && brew upgrade && brew cask upgrade && brew cask cleanup && brew cleanup'
 alias brew-fix='sudo chown -R $USER /usr/local'
 alias atom-up='apm update --confirm false'
 alias nvm-up='nvm install node && nvm alias default node'
@@ -168,7 +169,7 @@ gpg_init
 alias gpg-restart="killall gpg-agent && gpg_init"
 
 # Others
-alias change-ssh-pw='ssh-keygen -f ~/.ssh/id_rsa -p'
+alias ssh-passwd='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'
 
 if [ -f ~/.bash/extra ]; then

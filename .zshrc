@@ -147,10 +147,10 @@ alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
 
 # Updates, Homebrew & Cask
-alias update='mac-up && brew-up'
-alias mac-up='sudo softwareupdate --install --all'
+alias update='brew-up && mac-up'
 alias brew-up='brew update && brew upgrade && brew cask upgrade && brew cask cleanup && brew cleanup'
 alias brew-fix='sudo chown -R $USER /usr/local'
+alias mac-up='sudo softwareupdate --install --all'
 alias atom-up='apm update --confirm false'
 alias nvm-up='nvm install node && nvm alias default node'
 

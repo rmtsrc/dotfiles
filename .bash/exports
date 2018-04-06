@@ -1,16 +1,44 @@
-export PATH="/Users/Seb/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH:~/bin"
+export PATH="~/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:~/bin"
 MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 #EDITOR='vim'
 #EDITOR='/usr/local/bin/mvim -f'
-EDITOR='atom -w'
+#EDITOR='atom -w'
 #EDITOR='subl -w'
-export EDITOR
+#export EDITOR
 
 export LANGUAGE="en_GB.UTF-8"
+
+# Setup for iTerm
+set -g default-terminal "xterm-256color"
 
 # Colours
 export CLICOLOR='true'
 export LSCOLORS="gxfxcxdxbxegedabagacad"
+
+# brew zsh plugins
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=(/usr/local/share/zsh-completions $fpath)
+source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# GPG
+# Add the following to your shell init to set up gpg-agent automatically for every shell
+export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | cut -d= -f2 | sed -e 's/ //g')
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+if ssh-add -l | grep -q 'no identities'; then;
+  echo "Add SSH key? [y/N]:"
+  read add
+  if [ "$add" == "y" ]; then
+    ssh-add
+  fi
+fi

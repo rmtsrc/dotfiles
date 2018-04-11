@@ -38,7 +38,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 if ssh-add -l | grep -q 'no identities'; then;
   echo "Add SSH key? [y/N]:"
   read add
-  if [ "$add" == "y" ]; then
+  if [ "$add:l" == "y" ]; then
     ssh-add
   fi
 fi

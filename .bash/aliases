@@ -10,7 +10,8 @@ alias ....="cd ../../.."
 alias count='for i in *; do [ -d "$i" ] && echo "$i `find "$i" | grep -v .svn | wc -l`"; done | sort -k2 -n'
 
 # Start a simple HTTP server in current dir
-alias serve="python -m http.server"
+alias serve="python -m SimpleHTTPServer"
+#alias serve="python -m http.server"
 
 # Cursor
 alias hide-cursor="tput civis"
@@ -60,15 +61,18 @@ alias xmlpp='xmllint --format -'
 alias phpcs="find . -name *.php -exec phpcs --standard=Zend '{}' \;"
 
 # Others
-alias fuck='sudo $(history -p \!\!)'
+eval $(thefuck --alias)
+alias please="fuck"
 alias change-ssh-pw='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'
+alias parrot='curl parrot.live'
 
 alias write-speed="time dd if=/dev/zero bs=1024k of=tstfile count=1024"
 alias read-speed="time dd if=tstfile bs=1024k of=/dev/null count=1024"
 
 alias gpg-restart="killall gpg-agent && gpg_init"
 
-# Others
 alias ssh-passwd='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'
+
+alias mov2mp4="for i in *.mov; do ffmpeg -i \"$i\" -c:v libx264 -crf 23 -profile:v main -pix_fmt yuv420p -c:a aac -ac 2 -b:a 128k -movflags faststart \"${i%.*}.mp4\"; done"

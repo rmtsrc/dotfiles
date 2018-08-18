@@ -1,10 +1,15 @@
 export PATH="~/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:~/bin"
 MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+export LANGUAGE="en_GB.UTF-8"
 
 #EDITOR='vim'
 #EDITOR='/usr/local/bin/mvim -f'
@@ -12,7 +17,7 @@ export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 #EDITOR='subl -w'
 #export EDITOR
 
-export LANGUAGE="en_GB.UTF-8"
+export THEFUCK_RULES='DEFAULT_RULES:git_push_force'
 
 # Setup for iTerm
 set -g default-terminal "xterm-256color"

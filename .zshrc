@@ -64,7 +64,6 @@ plugins=(
   common-aliases
   docker
   docker-compose
-  emoji-clock
   git
   git-extras
   gitignore

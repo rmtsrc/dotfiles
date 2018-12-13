@@ -31,7 +31,7 @@ alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'
 # Git
 alias git-purge='git fetch --all -p && git branch --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d'
 alias gp="git pull origin && git-purge"
-alias gstash="git add . && git stash && git status"
+alias gstash="git add -A && git stash && git status"
 alias gpop="git stash pop && git reset && git status"
 alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
 alias gclean="git clean -fdXi"
@@ -49,13 +49,14 @@ alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="a
 
 # Updates, Homebrew & Cask
 alias update='brew-up && mac-up'
-alias brew-up='brew update && brew upgrade && brew cask upgrade && brew cask cleanup && brew cleanup'
+alias brew-up='brew update && brew upgrade && brew cask upgrade && brew cleanup'
 alias brew-fix='sudo chown -R $USER /usr/local'
 alias mac-up='sudo softwareupdate --install --all'
 alias atom-up='apm update --confirm false'
 alias nvm-up='nvm install node && nvm alias default node'
 
 # Code
+alias y='yarn'
 alias rm-node-modules='find . -name "node_modules" -type d -prune -exec rm -rf "{}" +'
 alias xmlpp='xmllint --format -'
 alias phpcs="find . -name *.php -exec phpcs --standard=Zend '{}' \;"

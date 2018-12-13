@@ -4,7 +4,7 @@
   # signingkey =
 [commit]
   # gpgsign = true
-	template = ~/.gitCommitMsgTemplate
+  template = ~/.gitCommitMsgTemplate
 [push]
   default = simple
 [pull]
@@ -39,6 +39,7 @@
   newHighlight = green bold 22
 [merge]
   tool = opendiff
+  guitool = opendiff
 [help]
   autocorrect = 1
 [alias]
@@ -71,13 +72,16 @@
   cl = clean -d -f -i
   clig = clean -d -f -X -i
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
   required = true
-	process = git-lfs filter-process
-[difftool "sourcetree"]
+  process = git-lfs filter-process
+[difftool]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path =
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "sourcetree"]
   cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   trustExitCode = true

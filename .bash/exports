@@ -41,9 +41,9 @@ export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 if ssh-add -l | grep -q 'no identities'; then;
-  echo "Add SSH key? [y/N]:"
-  read add
-  if [ "$add:l" == "y" ]; then
+  read "response?Add SSH key? [y/N] "
+  response=${response:l} #tolower
+  if [[ $response =~ ^(yes|y) ]]; then
     ssh-add
   fi
 fi

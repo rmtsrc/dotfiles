@@ -44,33 +44,34 @@
   autocorrect = 1
 [alias]
   a = add -p
-  cl = clone --recursive
-  sclone = clone --depth=1
-  s = status -s
-  st = status
-  pr = pull --rebase
-  up = pull
+  br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
   c = commit -am
   ci = commit -p
-  br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
-  rm-br = push origin --delete
+  cl = clean -d -f -i
+  cl = clone --recursive
+  clig = clean -d -f -X -i
   co = checkout
   cot = checkout --track -b
   # Show the diff between the latest commit and the current state
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-  df = diff --color --color-words --abbrev
   dc = diff --cached
+  df = diff --color --color-words --abbrev
+  hash = rev-parse --short HEAD
+  # Show files ignored by git:
+  ign = ls-files -o -i --exclude-standard
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   ls = ls-files
-  # Show files ignored by git:
-  ign = ls-files -o -i --exclude-standard
+  mnc = merge --no-commit --no-ff
   p = pull
+  pr = pull --rebase
   pu = push
-  hash = rev-parse --short HEAD
-  cl = clean -d -f -i
-  clig = clean -d -f -X -i
+  rm-br = push origin --delete
+  s = status -s
+  sclone = clone --depth=1
+  st = status
+  up = pull
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f

@@ -72,6 +72,7 @@
   sclone = clone --depth=1
   st = status
   up = pull
+  discard = checkout -p
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f

@@ -29,12 +29,15 @@ alias gource='gource --multi-sampling --seconds-per-day 3 --loop --key --user-im
 alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'"
 
 # Git
-alias git-purge='git fetch --all -p && git branch --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d'
-alias gp="git pull origin && git-purge"
-alias gstash="git add -A && git stash && git status"
-alias gpop="git stash pop && git reset && git status"
+alias git-list-merged-branches='git branch -vv | grep '"'"'origin/.*: gone]'"'"' | awk '"'"'{print $1}'"'"''
+alias gdmb='git-list-merged-branches | xargs git branch -D'
+alias git-purge="git fetch --all -p && gdmb"
+alias gp="git pull origin && gdmb"
+alias gstash="git stash -u && git status"
+alias gpop="git stash pop && git status"
 alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
 alias gclean="git clean -fdXi"
+alias git branch -vv | awk '/origin\/.*: gone]/{print$1}'
 alias gms="git merge --squash"
 alias gcmsgc="git log -1 --pretty=%B | pbcopy"
 

@@ -152,15 +152,6 @@ function git-up(){
   git checkout master && git pr && git checkout - && git rebase master
 }
 
-function docker-up(){
-	docker-machine start dinghy
-	eval $(dinghy env)
-}
-
-function docker-bash(){
-  docker exec -i -t $1 bash
-}
-
 function run-until-success(){
   eval "$@"
   while [ $? -ne 0 ]; do eval "$@"; done
@@ -169,6 +160,16 @@ function run-until-success(){
 function run-until-fail(){
   eval "$@"
   while [ $? -eq 0 ]; do eval "$@"; done
+}
+
+function docker() {
+  if [[ $@ == "volumes" ]]; then
+    command docker volume ls
+  elif [[ $1 == "bash" ]]; then
+    command docker exec -i -t $2 bash
+  else
+    command docker "$@"
+  fi
 }
 
 gpg_init () {

@@ -1,4 +1,4 @@
-export PATH="~/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:~/bin"
+export PATH="~/Library/Android/sdk/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:$HOME/bin:$HOME/.bash/bin"
 MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -10,6 +10,7 @@ export NVM_DIR="$HOME/.nvm"
 export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
 export ANDROID_NDK=$ANDROID_SDK_ROOT/ndk-bundle
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$PATH
 
 export LANGUAGE="en_GB.UTF-8"
 

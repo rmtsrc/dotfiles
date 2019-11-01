@@ -4,6 +4,7 @@
 # Saves files in `~/Documents/Archive/banking/1970/1970-12-25-bank-name.jpg`
 
 # `brew install scanline ghostscript imagemagick tesseract`
+# set -x
 
 DATE=`date +%Y-%m-%d`
 NAME="$DATE-$1"
@@ -13,13 +14,14 @@ scanline -flatbed -a4 -batch -name $NAME $@
 YEAR=`date +%Y`
 convert ~/Documents/Archive/$1/$YEAR/$NAME.pdf ~/Documents/Archive/$1/$YEAR/$NAME.jpg
 
-for file in ~/Documents/Archive/$1/$YEAR/$NAME-*.jpg
+for file in ~/Documents/Archive/$1/$YEAR/$NAME*.jpg
 do
 	tesseract $file $file
 done
 
+cat ~/Documents/Archive/$1/$YEAR/$NAME.jpg.txt > ~/Documents/Archive/$1/$YEAR/$NAME.txt 2>/dev/null
 for n in {0..100}
 do
   cat ~/Documents/Archive/$1/$YEAR/$NAME-$n.jpg.txt >> ~/Documents/Archive/$1/$YEAR/$NAME.txt 2>/dev/null
 done
-rm -f ~/Documents/Archive/$1/$YEAR/$NAME-*
+rm -f ~/Documents/Archive/$1/$YEAR/$NAME*.jpg*

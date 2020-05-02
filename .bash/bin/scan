@@ -3,7 +3,7 @@
 # Usage `$scan bank-name banking`
 # Saves files in `~/Documents/Archive/banking/1970/1970-12-25-bank-name.jpg`
 
-# `brew install scanline ghostscript imagemagick tesseract`
+# `brew install ghostscript imagemagick tesseract && brew cask install scanline`
 # set -x
 
 DATE=`date +%Y-%m-%d`

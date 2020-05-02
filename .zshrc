@@ -73,7 +73,6 @@ plugins=(
   node
   npm
   nvm
-  nyan
   osx
   react-native
   rsync
@@ -81,7 +80,6 @@ plugins=(
   vagrant
   yarn
   z
-  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh

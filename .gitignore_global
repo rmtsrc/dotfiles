@@ -15,9 +15,10 @@ Icon
 .Trashes
 
 # Others
-.idea
 npm-debug.log
 *.orig
+private.*
 
 # IDE
+.idea
 .history

@@ -137,3 +137,6 @@ set splitright
 
 " File types
 au BufRead,BufNewFile *.md set filetype=markdown
+
+" macOS copy to clipboard
+vmap '' :w !pbcopy<CR><CR>

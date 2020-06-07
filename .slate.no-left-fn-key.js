@@ -1,4 +1,4 @@
-slate.config("menuBarIconHidden", true);
+slate.config("menuBarIconHidden", false);
 
 var pushRight = slate.operation("push", {
   "direction": "right",
@@ -170,7 +170,7 @@ slate.bind("down:ctrl,alt", function(win) {
   }
 });
 
-slate.bind("right:ctrl,alt,cmd", function(win) {
+slate.bind("right:alt,cmd", function(win) {
   if (!win) {
     return;
   }
@@ -181,7 +181,7 @@ slate.bind("right:ctrl,alt,cmd", function(win) {
   }));
 });
 
-slate.bind("left:ctrl,alt,cmd", function(win) {
+slate.bind("left:alt,cmd", function(win) {
   if (!win) {
     return;
   }
@@ -192,14 +192,14 @@ slate.bind("left:ctrl,alt,cmd", function(win) {
   }));
 });
 
-slate.bind("up:ctrl,alt,cmd", function(win) {
+slate.bind("up:alt,cmd", function(win) {
   if (!win) {
     return;
   }
   win.doOperation(pushTop);
 });
 
-slate.bind("down:ctrl,alt,cmd", function(win) {
+slate.bind("down:alt,cmd", function(win) {
   if (!win) {
     return;
   }
@@ -208,4 +208,10 @@ slate.bind("down:ctrl,alt,cmd", function(win) {
 
 slate.bind("1:ctrl", slate.operation("hint", {
   "characters" : "QWERTYUIOP"
+}));
+
+slate.bind("esc:ctrl", slate.operation("shell", {
+  "command" : "/usr/bin/pmset  displaysleepnow",
+  "wait" : false,
+  "path" : "~"
 }));

@@ -86,3 +86,7 @@ end)
 hs.hotkey.bind({"ctrl", "cmd"}, "w", function()
   hs.caffeinate.systemSleep()
 end)
+
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "forwarddelete", function()
+  hs.caffeinate.shutdownSystem()
+end)

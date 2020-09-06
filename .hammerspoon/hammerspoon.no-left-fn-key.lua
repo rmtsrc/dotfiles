@@ -83,6 +83,10 @@ hs.hotkey.bind({"alt", "cmd"}, "Down", function()
   win:setFrame(f)
 end)
 
+hs.hotkey.bind({"ctrl", "shift"}, "d", function()
+  hs.eventtap.keyStrokes(os.date("%Y-%m-%d"))
+end)
+
 hs.hotkey.bind({"ctrl", "cmd"}, "w", function()
   hs.caffeinate.systemSleep()
 end)

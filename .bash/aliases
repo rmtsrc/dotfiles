@@ -54,7 +54,7 @@ alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="a
 
 # Updates, Homebrew & Cask
 alias update='brew-up'
-alias brew-up='brew update && brew upgrade && brew cask upgrade && brew cleanup'
+alias brew-up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
 alias brew-fix='sudo chown -R $USER /usr/local'
 alias mac-up='sudo softwareupdate --install --all'
 alias atom-up='apm update --confirm false'
@@ -78,6 +78,8 @@ alias write-speed="time dd if=/dev/zero bs=1024k of=tstfile count=1024"
 alias read-speed="time dd if=tstfile bs=1024k of=/dev/null count=1024"
 
 alias gpg-restart="killall gpg-agent && gpg_init"
+alias encrypt="gpg -c"
+alias decrypt="gpg"
 
 alias ssh-passwd='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'

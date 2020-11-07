@@ -7,11 +7,10 @@ COMMIT_MESSAGE=`head -n1 $INPUT_FILE`
 
 # The following is a text file that represents your custom dictionary; edit as necessary. Add words to it that you wish
 # to ignore for the spell check.
-dict=~/.git-spell-check-dictionary
+dict=~/.git-spell-check-dictionary.extra
 if [ ! -f $dict ]; then
-    touch ~/.git-spell-check-dictionary
-    dict=~/.git-spell-check-dictionary
-    printf "%s\n" "Custom dictionary not found. Created ~/.git-spell-check-dictionary..."
+    touch $dict
+    printf "%s\n" "Custom dictionary not found. Created $dict..."
 fi
 
 temp_dict=$(mktemp docs-dictionary-XXXXXX)

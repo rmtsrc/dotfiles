@@ -42,6 +42,7 @@ alias gclean="git clean -fdXi"
 alias git branch -vv | awk '/origin\/.*: gone]/{print$1}'
 alias gms="git merge --squash"
 alias gcmsgc="git log -1 --pretty=%B | pbcopy"
+alias igcmsg="mkdir -p .git/hooks && touch .git/hooks/commit-msg && cat ~/.bash/bin/commit-msg .git/hooks/commit-msg > .git/hooks/commit-msg.new; mv -f .git/hooks/commit-msg.new .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg"
 
 # Docker
 alias fig="docker-compose"

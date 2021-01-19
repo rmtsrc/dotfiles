@@ -1,4 +1,4 @@
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:$HOME/bin:$HOME/.bash/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:$HOME/bin:$HOME/.bash/bin"
 MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -21,11 +21,13 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export LANGUAGE="en_GB.UTF-8"
 
+#EDITOR='nano'
 #EDITOR='vim'
 #EDITOR='/usr/local/bin/mvim -f'
+EDITOR='micro'
 #EDITOR='atom -w'
 #EDITOR='subl -w'
-#export EDITOR
+export EDITOR
 
 export THEFUCK_RULES='DEFAULT_RULES:git_push_force'
 

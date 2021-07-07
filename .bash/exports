@@ -1,12 +1,12 @@
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:$HOME/bin:$HOME/.bash/bin"
-MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+export PATH="$PATH:$HOME/bin:$HOME/.bash/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# Node
+# Node/NVM
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -21,13 +21,11 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export LANGUAGE="en_GB.UTF-8"
 
-#EDITOR='nano'
 #EDITOR='vim'
-#EDITOR='/usr/local/bin/mvim -f'
+#EDITOR='nano'
 EDITOR='micro'
-#EDITOR='atom -w'
-#EDITOR='subl -w'
 export EDITOR
+alias edit="$EDITOR"
 
 export THEFUCK_RULES='DEFAULT_RULES:git_push_force'
 
@@ -37,13 +35,6 @@ set -g default-terminal "xterm-256color"
 # Colours
 export CLICOLOR='true'
 export LSCOLORS="gxfxcxdxbxegedabagacad"
-
-# brew zsh plugins
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fpath=(/usr/local/share/zsh-completions $fpath)
-source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # GPG
 # Add the following to your shell init to set up gpg-agent automatically for every shell
@@ -65,9 +56,3 @@ alias hh=hstr                    # hh to be alias for hstr
 export HISTFILE=~/.zsh_history  # ensure history file visibility
 export HSTR_CONFIG=hicolor        # get more colors
 bindkey -s "\C-r" "\eqhstr\n"     # bind hstr to Ctrl-r (for Vi mode check doc)
-
-export HOMEBREW_NO_ANALYTICS=1
-
-# Google Cloud SDK
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"

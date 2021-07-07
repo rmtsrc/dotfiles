@@ -6,8 +6,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-alias rm="trash"
-
 # Count files under folders
 alias count='for i in *; do [ -d "$i" ] && echo "$i `find "$i" | grep -v .svn | wc -l`"; done | sort -k2 -n'
 
@@ -20,21 +18,13 @@ alias hide-cursor="tput civis"
 alias show-cursor="tput cnorm"
 
 # App links
-#alias vi="/usr/bin/vim"
-#alias vim="/usr/local/bin/mvim"
-alias ack='ACK_PAGER_COLOR="less -x4SRFX" /usr/local/bin/ack'
-alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args `pwd`"
-alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
-alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias gource='gource --multi-sampling --seconds-per-day 3 --loop --key --user-image-dir .git/avatar/ --follow-user "Seb Flippence"'
-
-alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'"
 
 # Git
 alias git-list-merged-branches='git branch -vv | grep '"'"'origin/.*: gone]'"'"' | awk '"'"'{print $1}'"'"''
 alias gdmb='git-list-merged-branches | xargs git branch -D'
 alias git-purge="git fetch --all -p && gdmb"
-alias gp="git pull origin && gdmb"
+alias gp="git pull"
 alias gstash="git stash -u && git status"
 alias gpop="git stash pop && git status"
 alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
@@ -53,11 +43,7 @@ alias docker-rm-untagged-images="docker rmi \$(docker images -f 'dangling=true' 
 alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
 
-# Updates, Homebrew & Cask
-alias update='brew-up'
-alias brew-up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
-alias brew-fix='sudo chown -R $USER /usr/local'
-alias mac-up='sudo softwareupdate --install --all'
+# Updates
 alias atom-up='apm update --confirm false'
 alias nvm-up='nvm install node && nvm alias default node'
 
@@ -69,11 +55,13 @@ alias xmlpp='xmllint --format -'
 alias phpcs="find . -name *.php -exec phpcs --standard=Zend '{}' \;"
 
 # Others
+eval "$(direnv hook zsh)"
 eval $(thefuck --alias)
 alias please="fuck"
 alias change-ssh-pw='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'
 alias parrot='curl parrot.live'
+alias ptop='bpytop'
 
 alias write-speed="time dd if=/dev/zero bs=1024k of=tstfile count=1024"
 alias read-speed="time dd if=tstfile bs=1024k of=/dev/null count=1024"

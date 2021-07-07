@@ -1,0 +1,35 @@
+# MacOS
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$PATH:$HOME/bin:$HOME/.bash/bin"
+MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export HOMEBREW_NO_ANALYTICS=1
+
+alias rm="trash"
+alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'"
+
+# Updates, Homebrew & Cask
+alias update='brew-up'
+alias brew-up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
+alias brew-fix='sudo chown -R $USER /usr/local'
+alias mac-up='sudo softwareupdate --install --all'
+
+# App links
+#alias vi="/usr/bin/vim"
+#alias vim="/usr/local/bin/mvim"
+alias ack='ACK_PAGER_COLOR="less -x4SRFX" /usr/local/bin/ack'
+alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args `pwd`"
+alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
+alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
+
+# Google Cloud SDK
+#source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+#source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+# brew zsh plugins
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=(/usr/local/share/zsh-completions $fpath)
+source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

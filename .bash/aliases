@@ -37,8 +37,10 @@ alias gspell="mkdir -p .git/hooks && touch .git/hooks/commit-msg && cat ~/.bash/
 # Docker
 alias fig="docker-compose"
 alias fig-kill-rm="fig kill && fig rm -f"
+alias docker-stop-all="docker kill \$(docker ps -q)"
 alias docker-restart-stopped="docker restart \$(docker ps -a -q -f status=exited)"
 alias docker-rm-stopped="docker rm -v \$(docker ps -a -q -f status=exited)"
+alias docker-rm-all="docker rm -v -f \$(docker ps -q -a)"
 alias docker-rm-untagged-images="docker rmi \$(docker images -f 'dangling=true' -q)"
 alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"

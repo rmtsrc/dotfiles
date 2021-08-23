@@ -1,5 +1,7 @@
 export PATH="$HOME/.local/bin":$PATH
 
+QT_QPA_PLATFORMTHEME="qt5ct"
+
 if [ -n "$DESKTOP_SESSION" ];then
   eval $(gnome-keyring-daemon --start)
   export SSH_AUTH_SOCK

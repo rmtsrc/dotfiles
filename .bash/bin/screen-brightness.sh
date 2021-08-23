@@ -1,18 +1,28 @@
 #!/usr/bin/env bash
 
+# Usage ./screen-brightness.sh Up/+/Down/- optional-display-name
+
+# Examples:
+# ./screen-brightness.sh Down # primary display brightness down 5%
+# ./screen-brightness.sh + DP-1-1 # DP-1-1 display brightness up 5%
+
 # Stop on error
 set -e
 
+STEP=5 # Step Up/Down brightness by: 5 = ".05", 10 = ".10", etc.
+
 Monitors=$( xrandr --verbose --current ) # Get monitors
 
+Monitor="$2"
+if [ -z "$Monitor" ] ; then
+    # Auto discover primary monitor name
+    Monitor=$( echo "$Monitors" | grep " connected" | grep "primary" | awk '{print $1}' )
+fi
 
-MONITOR=$( echo "$Monitors" | grep " connected" | grep "primary" | awk '{print $1}' ) # Auto discover monitor name or use to hard code: xrandr | grep " connected"
-STEP=5 # Step Up/Down brightnes by: 5 = ".05", 10 = ".10", etc.
-
-CurrBright=$( echo "$Monitors" | grep ^"$MONITOR" -A5 | tail -n1 )
+CurrBright=$( echo "$Monitors" | grep ^"$Monitor" -A5 | tail -n1 )
 CurrBright="${CurrBright##* }"  # Get brightness level with decimal place
 
-[[ $CurrBright == 0.0* ]] && CurrBright=${CurrBright::-1}
+[[ $CurrBright == 0.0* ]] && CurrBright=${CurrBright::-1} # Fix decimal zero padding
 
 Left=${CurrBright%%"."*}        # Extract left of decimal point
 Right=${CurrBright#*"."}        # Extract right of decimal point
@@ -40,10 +50,10 @@ else
     CurrBright=".${MathBright:0:2}"
 fi
 
-xrandr --output "$MONITOR" --brightness "$CurrBright"   # Set new brightness
+xrandr --output "$Monitor" --brightness "$CurrBright"   # Set new brightness
 
 # Display current brightness
 if [[ "$DEBUG" == "true" ]] ; then
-  printf "Monitor $MONITOR "
-  echo $( xrandr --verbose --current | grep ^"$MONITOR" -A5 | tail -n1 )
+  printf "Monitor $Monitor "
+  echo $( xrandr --verbose --current | grep ^"$Monitor" -A5 | tail -n1 )
 fi

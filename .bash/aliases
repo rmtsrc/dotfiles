@@ -51,6 +51,8 @@ alias nvm-up='nvm install node && nvm alias default node'
 
 # Code
 alias y='yarn'
+alias n='npm run'
+alias ni='npm i'
 alias yr='jq .scripts package.json'
 alias rm-node-modules='find . -name "node_modules" -type d -prune -exec rm -rf "{}" +'
 alias xmlpp='xmllint --format -'

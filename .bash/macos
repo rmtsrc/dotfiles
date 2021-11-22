@@ -33,3 +33,30 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Android
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+source ~/.bash/android
+
+# GPG
+gpg_init () {
+  if ! pgrep -x "gpg-agent" > /dev/null
+  then
+    eval $(gpg-agent --daemon)
+  fi
+}
+gpg_init
+
+# Add the following to your shell init to set up gpg-agent automatically for every shell
+export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | cut -d= -f2 | sed -e 's/ //g')
+
+# ssh
+export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
+
+if ssh-add -l | grep -q 'no identities'; then;
+  read "response?Add SSH key? [y/N] "
+  response=${response:l} #tolower
+  if [[ $response =~ ^(yes|y) ]]; then
+    ssh-add -K $SSH_KEY_PATH
+  fi
+fi

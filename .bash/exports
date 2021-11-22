@@ -10,14 +10,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# Android
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export ANDROID_HOME=$ANDROID_SDK_ROOT
-export ANDROID_NDK=$ANDROID_SDK_ROOT/ndk-bundle
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export LANGUAGE="en_GB.UTF-8"
 
@@ -35,21 +27,6 @@ set -g default-terminal "xterm-256color"
 # Colours
 export CLICOLOR='true'
 export LSCOLORS="gxfxcxdxbxegedabagacad"
-
-# GPG
-# Add the following to your shell init to set up gpg-agent automatically for every shell
-export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | cut -d= -f2 | sed -e 's/ //g')
-
-# ssh
-export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
-
-if ssh-add -l | grep -q 'no identities'; then;
-  read "response?Add SSH key? [y/N] "
-  response=${response:l} #tolower
-  if [[ $response =~ ^(yes|y) ]]; then
-    ssh-add -K $SSH_KEY_PATH
-  fi
-fi
 
 # HSTR configuration - add this to ~/.bashrc
 alias hh=hstr                    # hh to be alias for hstr

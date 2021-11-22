@@ -1,0 +1,13 @@
+[Unit]
+Description=Disables wake-up from devices
+# the service runs before the computer goes to sleep
+Before=sleep.target
+
+[Service]
+Type=simple
+# check if wake up from listed devices is enabled, if so, toggle them to disabled
+ExecStart=/usr/bin/bash -x /home/seb/Nextcloud/dotfiles/.bash/bin/disable-wake.sh
+
+[Install]
+# this does the hook to sleep.target
+WantedBy=sleep.target

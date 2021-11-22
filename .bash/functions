@@ -173,14 +173,6 @@ function docker() {
   fi
 }
 
-gpg_init () {
-  if ! pgrep -x "gpg-agent" > /dev/null
-  then
-    eval $(gpg-agent --daemon)
-  fi
-}
-gpg_init
-
 # Change node version on cd
 autoload -U add-zsh-hook
 load-nvmrc() {

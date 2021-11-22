@@ -1,5 +1,6 @@
 # Better ls
-alias l="ls -lha"
+alias l="lsd"
+alias ll="l -lha"
 
 # cd up!
 alias ..="cd .."

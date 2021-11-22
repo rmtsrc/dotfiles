@@ -1,5 +1,20 @@
 export PATH="$HOME/.local/bin":$PATH
 
+# Android
+export ANDROID_SDK_ROOT=/opt/android-sdk
+source ~/.bash/android
+
+# Use powerline
+USE_POWERLINE="true"
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+# Use manjaro zsh prompt
+if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+  source /usr/share/zsh/manjaro-zsh-prompt
+fi
+
 QT_QPA_PLATFORMTHEME="qt5ct"
 
 if [ -n "$DESKTOP_SESSION" ];then

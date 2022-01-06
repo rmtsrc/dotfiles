@@ -1,6 +1,6 @@
 [user]
-	name = Seb Flippence
-  email = 144435+SebFlippence@users.noreply.github.com
+	name = rmt/src
+	email = 144435+rmtsrc@users.noreply.github.com
 	# signingkey =
 [commit]
 	# gpgsign = true
@@ -16,6 +16,14 @@
 	# insanely beautiful diffs
 	#pager = diff-so-fancy | less --tabs=4 -RFX # Replaced by delta
 	#pager = bash -lc 'diff-highlight | strip_diff_leading_symbols | less -r' -
+[init]
+	defaultBranch = trunk
+[branch "trunk"]
+	remote = origin
+	merge = refs/heads/trunk
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master

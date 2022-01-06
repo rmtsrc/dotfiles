@@ -1,0 +1,8 @@
+[Unit]
+Description=Delete monitor config
+
+[Service]
+ExecStart=rm -f /home/seb/.config/monitors.xml
+
+[Install]
+WantedBy=multi-user.target

@@ -16,8 +16,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-# ZSH_THEME="simple"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+if [[ -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]]; then
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+else
+  ZSH_THEME="simple"
+fi
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -81,6 +84,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  # brew
   common-aliases
   docker
   docker-compose
@@ -93,13 +97,13 @@ plugins=(
   node
   npm
   nvm
+  # osx
   rsync
-  terraform
-  vagrant
+  # terraform
+  # vagrant
   yarn
   z
-  # osx
-  # brew
+  # zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -194,3 +194,13 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+# tmux change hostname info on ssh
+if [ "$TMUX" ]; then
+  tmux setenv -g CONNECTED_HOST $(hostname)
+  function ssh() {
+    tmux setenv -g CONNECTED_HOST $(echo $* | cut -d . -f 1)
+    command ssh "$@"
+    tmux setenv -g CONNECTED_HOST $(hostname)
+  }
+fi

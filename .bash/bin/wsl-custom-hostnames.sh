@@ -14,6 +14,8 @@
 # Note: to allow other devices to connect you will need to add a new firewall rule via:
 # `Win+R` > `wf.msc` > Inbound Rules > New Rule > Port and allow the ports you wish to expose to the network
 
+set -e
+
 HOSTNAMES=$1
 PORTS=$2
 

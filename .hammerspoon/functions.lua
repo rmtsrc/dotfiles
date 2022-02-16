@@ -1,4 +1,4 @@
-hs.hotkey.bind("ctrl", "home", function()
+ function splitWindowLeft()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -9,9 +9,9 @@ hs.hotkey.bind("ctrl", "home", function()
   f.w = max.w / 2
   f.h = max.h
   win:setFrame(f)
-end)
+end
 
-hs.hotkey.bind("ctrl", "end", function()
+function splitWindowRight()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -22,42 +22,9 @@ hs.hotkey.bind("ctrl", "end", function()
   f.w = max.w / 2
   f.h = max.h
   win:setFrame(f)
-end)
+end
 
-hs.hotkey.bind("ctrl", "pageup", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"ctrl", "alt"}, "Right", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.w = f.w + (max.w / 10)
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"ctrl", "alt"}, "Left", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.w = f.w - (max.w / 10)
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"ctrl", "alt"}, "Up", function()
+function splitWindowTop()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -68,9 +35,9 @@ hs.hotkey.bind({"ctrl", "alt"}, "Up", function()
   f.w = max.w
   f.h = max.h / 2
   win:setFrame(f)
-end)
+end
 
-hs.hotkey.bind({"ctrl", "alt"}, "Down", function()
+function splitWindowBottom()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -81,12 +48,69 @@ hs.hotkey.bind({"ctrl", "alt"}, "Down", function()
   f.w = max.w
   f.h = max.h / 2
   win:setFrame(f)
-end)
+end
 
-hs.hotkey.bind({"ctrl", "cmd"}, "w", function()
+function maximizeWindow()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w
+  f.h = max.h
+  win:setFrame(f)
+end
+
+function growWindowWidth()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.w = f.w + (max.w / 10)
+  win:setFrame(f)
+end
+
+function shrinkWindowWidth()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.w = f.w - (max.w / 10)
+  win:setFrame(f)
+end
+
+function moveWindowToDisplay(d)
+  return function()
+    local displays = hs.screen.allScreens()
+    local win = hs.window.focusedWindow()
+    win:moveToScreen(displays[d], false, true)
+  end
+end
+
+function showHideMissionControl()
+  hs.osascript.applescript('tell application "System Events" to key code 126 using {control down}')
+end
+
+function switchToWorkspaceLeft()
+  hs.osascript.applescript('tell application "System Events" to key code 123 using {control down}')
+end
+
+function switchToWorkspaceRight()
+  hs.osascript.applescript('tell application "System Events" to key code 124 using {control down}')
+end
+
+function systemSleep()
   hs.caffeinate.systemSleep()
-end)
+end
 
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "forwarddelete", function()
+function systemShutdown()
   hs.caffeinate.shutdownSystem()
-end)
+end
+
+function typeDate()
+  hs.eventtap.keyStrokes(os.date("%Y-%m-%d"))
+end

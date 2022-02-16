@@ -11,8 +11,8 @@ alias ....="cd ../../.."
 alias count='for i in *; do [ -d "$i" ] && echo "$i `find "$i" | grep -v .svn | wc -l`"; done | sort -k2 -n'
 
 # Start a simple HTTP server in current dir
-alias serve="python -m SimpleHTTPServer"
-#alias serve="python -m http.server"
+#alias serve="python -m SimpleHTTPServer"
+alias serve="python -m http.server"
 
 # Cursor
 alias hide-cursor="tput civis"

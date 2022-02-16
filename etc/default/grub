@@ -7,7 +7,7 @@ GRUB_CMDLINE_LINUX=""
 
 # If you want to enable the save default function, uncomment the following
 # line, and set GRUB_DEFAULT to saved.
-#GRUB_SAVEDEFAULT=true
+GRUB_SAVEDEFAULT=true
 
 # Uncomment to disable submenus in boot menu
 #GRUB_DISABLE_SUBMENU=y

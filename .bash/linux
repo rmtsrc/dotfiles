@@ -1,7 +1,7 @@
 export PATH="$HOME/.local/bin":$PATH
 
 # Android
-export ANDROID_SDK_ROOT=/opt/android-sdk
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 source ~/.bash/android
 
 # Use powerline

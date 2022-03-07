@@ -8,6 +8,8 @@ unset file
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   [ -r ~/.bash/macos ] && source ~/.bash/macos
+elif [[ "$(< /proc/sys/kernel/osrelease)" == *WSL* ]]; then
+  [ -r ~/.bash/wsl ] && source ~/.bash/wsl
 else
   [ -r ~/.bash/linux ] && source ~/.bash/linux
 fi

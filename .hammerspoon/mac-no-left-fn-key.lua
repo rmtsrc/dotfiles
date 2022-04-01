@@ -1,4 +1,5 @@
 require "functions"
+require "barrier"
 
 hs.hotkey.bind({"ctrl", "alt"}, "Left", splitWindowLeft)
 hs.hotkey.bind({"ctrl", "alt"}, "Right", splitWindowRight)
@@ -12,8 +13,3 @@ hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Left", moveWindowToDisplay(2))
 hs.hotkey.bind({"ctrl", "shift"}, "d", typeDate)
 hs.hotkey.bind({"ctrl", "cmd"}, "w", systemSleep)
 hs.hotkey.bind({"ctrl", "alt", "cmd"}, "forwarddelete", systemShutdown)
-
--- logi mouse controls via barrier
-hs.hotkey.bind({"alt"}, "s", showHideMissionControl)
-hs.hotkey.bind({"ctrl", "cmd"}, "Left", switchToWorkspaceLeft)
-hs.hotkey.bind({"ctrl", "cmd"}, "Right", switchToWorkspaceRight)

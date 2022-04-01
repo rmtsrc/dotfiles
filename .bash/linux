@@ -15,7 +15,9 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
-QT_QPA_PLATFORMTHEME="qt5ct"
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 if [ -n "$DESKTOP_SESSION" ];then
   eval $(gnome-keyring-daemon --start)

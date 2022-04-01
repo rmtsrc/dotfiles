@@ -100,7 +100,7 @@ plugins=(
   git
   git-extras
   gitignore
-  gpg-agent
+  # gpg-agent
   history
   jsontools
   node

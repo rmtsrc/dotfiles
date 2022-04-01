@@ -22,8 +22,6 @@ alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args `pwd`
 alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 
-alias docker=podman
-
 # Google Cloud SDK
 #source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 #source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
@@ -34,6 +32,7 @@ fpath=(/opt/homebrew/share/zsh-completions $fpath)
 source /opt/homebrew/opt/zsh-git-prompt/zshrc.sh
 source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Android
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
@@ -55,9 +54,5 @@ export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | 
 export SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
 
 if ssh-add -l | grep -q 'no identities'; then;
-  read "response?Add SSH key? [y/N] "
-  response=${response:l} #tolower
-  if [[ $response =~ ^(yes|y) ]]; then
-    ssh-add --apple-use-keychain $SSH_KEY_PATH
-  fi
+  ssh-add --apple-use-keychain $SSH_KEY_PATH &> /dev/null
 fi

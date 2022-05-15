@@ -15,13 +15,16 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-if [ -n "$DESKTOP_SESSION" ];then
+if [ -n "$DESKTOP_SESSION" ]; then
   eval $(gnome-keyring-daemon --start)
   export SSH_AUTH_SOCK
 fi
 
 alias open="nautilus"
+alias reboot-to-bios="systemctl reboot --firmware-setup"

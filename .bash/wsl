@@ -11,3 +11,5 @@ if [ $? -ne 0   ]; then
     rm -f $GPG_SOCK
     ( setsid socat UNIX-LISTEN:$GPG_SOCK,fork EXEC:"/mnt/c/win-gpg-agent/sorelay.exe -a c\:/Users/Seb/AppData/Local/gnupg/S.gpg-agent",nofork & ) >/dev/null 2>&1
 fi
+
+alias update="sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && sudo apt autoremove"

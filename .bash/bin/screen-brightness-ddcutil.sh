@@ -24,7 +24,7 @@
 # Stop on error
 set -e
 
-MONITOR=16 # 16 intel - 17 nvidia - 15 wayland
+MONITOR=15 # 16 intel - 17 nvidia - 15 wayland
 STEP=25 # Step Up/Down brightness by: 25%
 FEATURE=10 # Brightness
 

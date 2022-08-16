@@ -21,10 +21,5 @@ fi
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-if [ -n "$DESKTOP_SESSION" ]; then
-  eval $(gnome-keyring-daemon --start)
-  export SSH_AUTH_SOCK
-fi
-
 alias open="nautilus"
 alias reboot-to-bios="systemctl reboot --firmware-setup"

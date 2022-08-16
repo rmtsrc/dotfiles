@@ -11,7 +11,7 @@ alias ....="cd ../../.."
 alias count='for i in *; do [ -d "$i" ] && echo "$i `find "$i" | grep -v .svn | wc -l`"; done | sort -k2 -n'
 
 # Start a simple HTTP server in current dir
-alias serve="python -m http.server || python -m SimpleHTTPServer"
+alias serve="python -m http.server || python -m SimpleHTTPServer || npx local-web-server"
 
 # Cursor
 alias hide-cursor="tput civis"
@@ -44,17 +44,20 @@ alias docker-rm-all="docker rm -v -f \$(docker ps -q -a)"
 alias docker-rm-untagged-images="docker rmi \$(docker images -f 'dangling=true' -q)"
 alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
+alias lzd="docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/jesseduffield/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker"
 
 # Updates
 alias atom-up='apm update --confirm false'
 alias nvm-up='nvm install node && nvm alias default node'
 
 # Code
+alias cat='bat'
 alias y='yarn'
 alias n='npm run'
 alias ni='npm i'
 alias yr='jq .scripts package.json'
 alias rm-node-modules='find . -name "node_modules" -type d -prune -exec rm -rf "{}" +'
+alias m='micro'
 alias xmlpp='xmllint --format -'
 alias phpcs="find . -name *.php -exec phpcs --standard=Zend '{}' \;"
 

@@ -14,10 +14,6 @@
 	excludesfile = ~/.gitignore_global
 	quotepath = false
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	editor = flatpak run --file-forwarding re.sonny.Commit @@
-	# insanely beautiful diffs
-	#pager = diff-so-fancy | less --tabs=4 -RFX # Replaced by delta
-	#pager = bash -lc 'diff-highlight | strip_diff_leading_symbols | less -r' -
 [init]
 	defaultBranch = main
 [branch "main"]

@@ -1,5 +1,5 @@
 require "functions"
-require "barrier"
+-- require "barrier"
 
 hs.hotkey.bind({"ctrl"}, "home", splitWindowLeft)
 hs.hotkey.bind({"ctrl"}, "end", splitWindowRight)

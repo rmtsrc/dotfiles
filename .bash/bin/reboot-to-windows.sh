@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-if ! command -v cctk &> /dev/null
-then
-    echo "cctk could not be found"
-    exit 1
+if ! command -v cctk &>/dev/null; then
+  echo "cctk could not be found"
+  exit 1
 fi
 
 read -s -p "BIOS Password: " PASSWORD

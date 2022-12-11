@@ -29,9 +29,9 @@
 # ddcutil setvcp --noverify 0xE9 0x22 # PiP large
 # ddcutil setvcp --noverify 0xE9 0x24 # PiP side by side
 
-[[ "$1" == "off" ]] && ddcutil setvcp --noverify 0xE9 0x00 # PiP off
+[[ "$1" == "off" ]] && ddcutil setvcp --noverify 0xE9 0x00         # PiP off
 [[ "$1" == "toggle-size" ]] && ddcutil setvcp --noverify 0xE9 0x01 # PiP small/large toggle
-[[ "$1" == "move" ]] && ddcutil setvcp --noverify 0xE9 0x02 # PiP move
-[[ "$1" == "small" ]] && ddcutil setvcp --noverify 0xE9 0x21 # PiP small
-[[ "$1" == "large" ]] && ddcutil setvcp --noverify 0xE9 0x22 # PiP large
-[[ "$1" == "vertical" ]] && ddcutil setvcp --noverify 0xE9 0x24 # PiP side by side
+[[ "$1" == "move" ]] && ddcutil setvcp --noverify 0xE9 0x02        # PiP move
+[[ "$1" == "small" ]] && ddcutil setvcp --noverify 0xE9 0x21       # PiP small
+[[ "$1" == "large" ]] && ddcutil setvcp --noverify 0xE9 0x22       # PiP large
+[[ "$1" == "vertical" ]] && ddcutil setvcp --noverify 0xE9 0x24    # PiP side by side

@@ -18,7 +18,7 @@ alias mac-up='sudo softwareupdate --install --all'
 #alias vi="/usr/bin/vim"
 #alias vim="/usr/local/bin/mvim"
 alias ack='ACK_PAGER_COLOR="less -x4SRFX" /usr/local/bin/ack'
-alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args `pwd`"
+alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args $(pwd)"
 alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 
@@ -39,9 +39,8 @@ export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 source ~/.bash/android
 
 # GPG
-gpg_init () {
-  if ! pgrep -x "gpg-agent" > /dev/null
-  then
+gpg_init() {
+  if ! pgrep -x "gpg-agent" >/dev/null; then
     eval $(gpg-agent --daemon)
   fi
 }
@@ -53,8 +52,8 @@ export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | 
 # ssh
 export SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
 
-if ssh-add -l | grep -q 'no identities'; then;
-  ssh-add --apple-use-keychain $SSH_KEY_PATH &> /dev/null
+if ssh-add -l | grep -q 'no identities'; then
+  ssh-add --apple-use-keychain $SSH_KEY_PATH &>/dev/null
 fi
 
 # RVM

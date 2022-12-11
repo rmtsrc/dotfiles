@@ -23,7 +23,7 @@ hostsFile=/mnt/c/Windows/System32/drivers/etc/hosts
 tmpDir=/mnt/c/tmp
 tmpHostsFile=$tmpDir/hosts
 customComment="# WSL custom hosts"
-wslIp=`ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1`
+wslIp=$(ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
 wslHost="wsl.localdomain"
 wslHosts="$wslIp $HOSTNAMES $wslHost"
 
@@ -38,7 +38,7 @@ if ! grep -q "$wslHosts" $wslTmpHostsFile; then
   if grep -q "$wslHost" $wslTmpHostsFile; then
     sed -i "s/.*wsl\.localdomain$/$wslHosts/" $wslTmpHostsFile
   else
-    echo $wslHosts >> $wslTmpHostsFile
+    echo $wslHosts >>$wslTmpHostsFile
   fi
 
   sudo cp -f $wslTmpHostsFile $wslHostsFile
@@ -56,7 +56,7 @@ if grep -q "$customComment" $tmpHostsFile; then
   fi
   sed -i "/$customComment/{n;s/.*/$wslHosts/}" $tmpHostsFile
 else
-  cat <<EOT >> $tmpHostsFile
+  cat <<EOT >>$tmpHostsFile
 
 $customComment
 $wslHosts
@@ -66,10 +66,9 @@ fi
 # Windows generate port proxy cmd
 
 portProxy=""
-for p in $PORTS
-do
+for p in $PORTS; do
   if [[ "$p" == *">"* ]]; then
-    IFS='>' read -ra PARTS <<< "$p"
+    IFS='>' read -ra PARTS <<<"$p"
     portFrom=${PARTS[0]}
     portTo=${PARTS[1]}
 
@@ -85,9 +84,9 @@ done
 
 # Windows run PowerShell
 
-echo "Start-Process PowerShell -WindowStyle Hidden -Verb runAs -ArgumentList '-ExecutionPolicy Bypass -File C:\tmp\wslSetupNetwork.ps1'" > $tmpDir/wslElevateToAdminSetupNetwork.ps1
+echo "Start-Process PowerShell -WindowStyle Hidden -Verb runAs -ArgumentList '-ExecutionPolicy Bypass -File C:\tmp\wslSetupNetwork.ps1'" >$tmpDir/wslElevateToAdminSetupNetwork.ps1
 
-cat <<EOT > $tmpDir/wslSetupNetwork.ps1
+cat <<EOT >$tmpDir/wslSetupNetwork.ps1
 #Requires -RunAsAdministrator
 
 Copy-Item -force C:\tmp\hosts C:\Windows\System32\drivers\etc\hosts

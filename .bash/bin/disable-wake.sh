@@ -12,9 +12,8 @@
 
 toDisable="XHCI TXHC TDM1 TRP2 TRP3"
 
-for i in $toDisable
-do :
-  if [[ $(cat /proc/acpi/wakeup|grep $i | awk '{print substr($3,2); }') == enabled ]]; then
-    echo $i|tee /proc/acpi/wakeup
+for i in $toDisable; do
+  if [[ $(cat /proc/acpi/wakeup | grep $i | awk '{print substr($3,2); }') == enabled ]]; then
+    echo $i | tee /proc/acpi/wakeup
   fi
 done

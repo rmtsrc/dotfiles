@@ -1,15 +1,15 @@
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 ss -a | grep -q $SSH_AUTH_SOCK
-if [ $? -ne 0   ]; then
-    rm -f $SSH_AUTH_SOCK
-    ( setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"/mnt/c/win-gpg-agent/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork & )
+if [ $? -ne 0 ]; then
+  rm -f $SSH_AUTH_SOCK
+  (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"/mnt/c/win-gpg-agent/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &)
 fi
 
 export GPG_SOCK=$HOME/.gnupg/S.gpg-agent
 ss -a | grep -q $GPG_SOCK
-if [ $? -ne 0   ]; then
-    rm -f $GPG_SOCK
-    ( setsid socat UNIX-LISTEN:$GPG_SOCK,fork EXEC:"/mnt/c/win-gpg-agent/sorelay.exe -a c\:/Users/Seb/AppData/Local/gnupg/S.gpg-agent",nofork & ) >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  rm -f $GPG_SOCK
+  (setsid socat UNIX-LISTEN:$GPG_SOCK,fork EXEC:"/mnt/c/win-gpg-agent/sorelay.exe -a c\:/Users/Seb/AppData/Local/gnupg/S.gpg-agent",nofork &) >/dev/null 2>&1
 fi
 
 alias update="sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && sudo apt autoremove"

@@ -12,4 +12,6 @@ if [ $? -ne 0 ]; then
   (setsid socat UNIX-LISTEN:$GPG_SOCK,fork EXEC:"/mnt/c/win-gpg-agent/sorelay.exe -a c\:/Users/Seb/AppData/Local/gnupg/S.gpg-agent",nofork &) >/dev/null 2>&1
 fi
 
-alias update="sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && sudo apt autoremove"
+alias update="sudo apt update && sudo apt full-upgrade && sudo apt autoremove"
+alias bat="batcat"
+alias docker-start="sudo service docker start"

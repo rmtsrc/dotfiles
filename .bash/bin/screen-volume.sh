@@ -24,19 +24,19 @@
 set -e
 
 MONITOR=16 # 16 intel - 17 nvidia
-STEP=25 # Step Up/Down volume by: 25%
+STEP=25    # Step Up/Down volume by: 25%
 FEATURE=62 # Volume
 
 if [[ "$1" =~ ^[0-9]+$ ]]; then
   NewValue=$1
 else
-  CurValue=$( ddcutil --bus=$MONITOR -t getvcp $FEATURE )
+  CurValue=$(ddcutil --bus=$MONITOR -t getvcp $FEATURE)
   CurValue="$(echo $CurValue | awk '{print $4}')"
-  [[ "$1" == "Up" || "$1" == "+" ]] && NewValue=$(( CurValue + STEP ))
-  [[ "$1" == "Down" || "$1" == "-" ]] && NewValue=$(( CurValue - STEP ))
+  [[ "$1" == "Up" || "$1" == "+" ]] && NewValue=$((CurValue + STEP))
+  [[ "$1" == "Down" || "$1" == "-" ]] && NewValue=$((CurValue - STEP))
 fi
 
-[[ "$NewValue" -lt 10 ]] && NewValue=0      # Negative not allowed
-[[ "$NewValue" -gt 100  ]] && NewValue=100  # Can't go over 100
+[[ "$NewValue" -lt 10 ]] && NewValue=0    # Negative not allowed
+[[ "$NewValue" -gt 100 ]] && NewValue=100 # Can't go over 100
 
-ddcutil --bus=$MONITOR setvcp $FEATURE $NewValue    # Set new volume
+ddcutil --bus=$MONITOR setvcp $FEATURE $NewValue # Set new volume

@@ -22,14 +22,14 @@ color="red"
 last_m=$(date -v-1m +%m)
 last_m_name=$(date -jf %Y-%m-%d "$year"-"$last_m"-01 '+%b')
 echo "Last month: $last_m_name, $year|trim=false font=$font"
-cal -d "$year"-"$last_m" |awk 'NF'|sed 's/ *$//'| while IFS= read -r i; do echo "--$i|trim=false font=$font href=https://calendar.google.com"; done
+cal -d "$year"-"$last_m" | awk 'NF' | sed 's/ *$//' | while IFS= read -r i; do echo "--$i|trim=false font=$font href=https://calendar.google.com"; done
 echo "---"
 
-cal |awk 'NF'|sed 's/ $//' |while IFS= read -r i; do echo " $i|trim=false font=$font color=$color href=https://calendar.google.com"|  perl -pe '$b="\b";s/ _$b(\d)_$b(\d) /(\1\2)/' |perl -pe '$b="\b";s/_$b _$b(\d) /(\1)/' ; done
+cal | awk 'NF' | sed 's/ $//' | while IFS= read -r i; do echo " $i|trim=false font=$font color=$color href=https://calendar.google.com" | perl -pe '$b="\b";s/ _$b(\d)_$b(\d) /(\1\2)/' | perl -pe '$b="\b";s/_$b _$b(\d) /(\1)/'; done
 
 #Comment out these lines to remove "next month"
 echo "---"
 next_m=$(date -v+1m +%m)
 next_m_name=$(date -jf %Y-%m-%d "$year"-"$next_m"-01 '+%b')
 echo "Next month: $next_m_name, $year|trim=false font=$font"
-cal -d "$year"-"$next_m" | awk 'NF'|sed 's/ *$//' | while IFS= read -r i; do echo "--$i|trim=false font=$font href=https://calendar.google.com";done
+cal -d "$year"-"$next_m" | awk 'NF' | sed 's/ *$//' | while IFS= read -r i; do echo "--$i|trim=false font=$font href=https://calendar.google.com"; done

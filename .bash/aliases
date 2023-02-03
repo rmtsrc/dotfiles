@@ -31,7 +31,8 @@ alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
 alias gclean="git clean -fdXi"
 alias git branch -vv | awk '/origin\/.*: gone]/{print$1}'
 alias gms="git merge --squash"
-alias gcz="git hook run pre-commit && npx git-cz --disable-emoji -n"
+alias gcm="git checkout main"
+alias gcz="git hook run --ignore-missing pre-commit && npx git-cz --disable-emoji -n --body '' --scope '' --breaking '' --issues '' --lerna ''"
 alias gcmsgc="git log -1 --pretty=%B | pbcopy"
 alias gspell="mkdir -p .git/hooks && touch .git/hooks/commit-msg && cat ~/.bash/bin/commit-msg .git/hooks/commit-msg > .git/hooks/commit-msg.new; mv -f .git/hooks/commit-msg.new .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg"
 

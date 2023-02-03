@@ -111,6 +111,10 @@ function systemShutdown()
   hs.caffeinate.shutdownSystem()
 end
 
+function toggleDarkMode()
+  hs.osascript.applescript('tell app "System Events" to tell appearance preferences to set dark mode to not dark mode')
+end
+
 function typeDate()
   hs.eventtap.keyStrokes(os.date("%Y-%m-%d"))
 end

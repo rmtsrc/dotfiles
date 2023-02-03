@@ -11,6 +11,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
+# Python
+if type "pyenv" >/dev/null; then
+  export PATH=$(pyenv root)/shims:$PATH
+  export PYENV_ROOT="$HOME/.pyenv"
+  eval "$(pyenv init -)"
+fi
+
 export LANGUAGE="en_GB.UTF-8"
 
 #EDITOR='vim'

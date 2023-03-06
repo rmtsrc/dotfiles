@@ -1,0 +1,7 @@
+[ruby]
+disabled = true
+
+# Fixes for Warp
+# Looks odd
+[character]
+disabled = true

@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/vim-monokai"]
 	path = .vim/bundle/vim-monokai
 	url = https://github.com/sickill/vim-monokai
+[submodule ".hammerspoon/Spoons/SkyRocket.spoon"]
+	path = .hammerspoon/Spoons/SkyRocket.spoon
+	url = https://github.com/dbalatero/SkyRocket.spoon.git

@@ -4,7 +4,9 @@ MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if [[ -f "${HOME}/.iterm2_shell_integration.zsh" && "$TERM_PROGRAM" == "iTerm.app" ]]; then
+  source "${HOME}/.iterm2_shell_integration.zsh"
+fi
 
 export HOMEBREW_NO_ANALYTICS=1
 
@@ -35,10 +37,8 @@ alias keyboard-ext="open -g hammerspoon://setKeyboardLayoutBritishPC"
 # brew zsh plugins
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fpath=(/opt/homebrew/share/zsh-completions $fpath)
-source /opt/homebrew/opt/zsh-git-prompt/zshrc.sh
 source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Android
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk

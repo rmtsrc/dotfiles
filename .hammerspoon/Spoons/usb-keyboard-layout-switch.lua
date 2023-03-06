@@ -5,11 +5,9 @@ function usbDeviceCallback(data)
   -- log.i(data["productName"], data["eventType"], hs.keycodes.currentLayout())
   if (data["productName"] == "Keychron K3") then
     if (data["eventType"] == "added") then
-      hs.keycodes.setLayout("British – PC")
-      hs.execute("ln -sf ~/.hammerspoon/keyboard-usb.lua ~/.hammerspoon/keyboard-current-extra.lua")
+      setKeyboardLayoutBritishPC()
     elseif (data["eventType"] == "removed") then
-      hs.keycodes.setLayout("British")
-      hs.execute("ln -sf ~/.hammerspoon/keyboard-built-in.lua ~/.hammerspoon/keyboard-current-extra.lua")
+      setKeyboardLayoutBritish()
     end
     hs.reload()
   end
@@ -17,3 +15,11 @@ end
 
 usbWatcher = hs.usb.watcher.new(usbDeviceCallback)
 usbWatcher:start()
+
+hs.urlevent.bind("setKeyboardLayoutBritishPC", function(eventName, params)
+  setKeyboardLayoutBritishPC()
+end)
+
+hs.urlevent.bind("setKeyboardLayoutBritish", function(eventName, params)
+  setKeyboardLayoutBritish()
+end)

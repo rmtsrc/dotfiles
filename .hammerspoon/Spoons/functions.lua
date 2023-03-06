@@ -118,3 +118,13 @@ end
 function typeDate()
   hs.eventtap.keyStrokes(os.date("%Y-%m-%d"))
 end
+
+function setKeyboardLayoutBritish()
+  hs.keycodes.setLayout("British")
+  hs.execute("ln -sf ~/.hammerspoon/keyboard-built-in.lua ~/.hammerspoon/keyboard-current-extra.lua")
+end
+
+function setKeyboardLayoutBritishPC()
+  hs.keycodes.setLayout("British – PC")
+  hs.execute("ln -sf ~/.hammerspoon/keyboard-usb.lua ~/.hammerspoon/keyboard-current-extra.lua")
+end

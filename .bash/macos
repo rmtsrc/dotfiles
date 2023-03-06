@@ -25,6 +25,9 @@ alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args $(pwd
 alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 
+alias keyboard-laptop="open -g hammerspoon://setKeyboardLayoutBritish"
+alias keyboard-ext="open -g hammerspoon://setKeyboardLayoutBritishPC"
+
 # Google Cloud SDK
 #source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 #source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"

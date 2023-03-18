@@ -34,12 +34,6 @@ alias keyboard-ext="open -g hammerspoon://setKeyboardLayoutBritishPC"
 #source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 #source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
-# brew zsh plugins
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fpath=(/opt/homebrew/share/zsh-completions $fpath)
-source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Android
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 source ~/.bash/android

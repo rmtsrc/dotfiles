@@ -9,7 +9,12 @@ fi
 # Load our dotfiles like ~/.bash/bash_prompt, etc…
 #   ~/.bash/extra can be used for settings you don’t want to commit,
 #   Use it to configure your PATH, thus it being first in line.
-for file in ~/.bash/{exports,aliases,functions,extra}; do
+for file in ~/.bash/{exports,aliases,functions,plugins.zsh,extra}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
+
+if command -v starship &>/dev/null; then
+  [[ "$TERM_PROGRAM" == "WarpTerminal" ]] && export STARSHIP_CONFIG=~/.config/starship-warp.toml
+  eval "$(starship init zsh)"
+fi

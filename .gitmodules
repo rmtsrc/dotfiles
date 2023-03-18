@@ -25,8 +25,8 @@
 [submodule ".vim/bundle/ack"]
 	path = .vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "editorconfig"]
-	path = editorconfig
+[submodule ".vim/bundle/editorconfig-vim"]
+	path = .vim/bundle/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
 [submodule ".vim/bundle/fugitive"]
 	path = .vim/bundle/fugitive
@@ -49,8 +49,8 @@
 [submodule ".vim/bundle/surround"]
 	path = .vim/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule ".vim/bundle/tlib"]
-	path = .vim/bundle/tlib
+[submodule ".vim/bundle/tlib_vim"]
+	path = .vim/bundle/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
 [submodule ".vim/bundle/javascript"]
 	path = .vim/bundle/javascript
@@ -67,3 +67,18 @@
 [submodule ".hammerspoon/Spoons/SkyRocket.spoon"]
 	path = .hammerspoon/Spoons/SkyRocket.spoon
 	url = https://github.com/dbalatero/SkyRocket.spoon.git
+[submodule ".bash/plugins/zsh-z"]
+	path = .bash/plugins/zsh-z
+	url = git@github.com:agkozak/zsh-z.git
+[submodule ".bash/plugins/zsh-autosuggestions"]
+	path = .bash/plugins/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule ".bash/plugins/zsh-history-substring-search"]
+	path = .bash/plugins/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule ".bash/plugins/zsh-syntax-highlighting"]
+	path = .bash/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".bash/plugins/zsh-npm-scripts-autocomplete"]
+	path = .bash/plugins/zsh-npm-scripts-autocomplete
+	url = https://github.com/grigorii-zander/zsh-npm-scripts-autocomplete.git

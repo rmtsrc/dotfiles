@@ -21,6 +21,7 @@ alias show-cursor="tput cnorm"
 alias gource='gource --multi-sampling --seconds-per-day 3 --loop --key --user-image-dir .git/avatar/ --follow-user "Seb Flippence"'
 
 # Git
+alias g='git'
 alias git-list-merged-branches='git branch -vv | grep '"'"'origin/.*: gone]'"'"' | awk '"'"'{print $1}'"'"''
 alias gdmb='git-list-merged-branches | xargs git branch -D'
 alias git-purge="git fetch --all -p && gdmb"
@@ -29,9 +30,10 @@ alias gstash="git stash -u && git status"
 alias gpop="git stash pop && git status"
 alias gignored="git clean -fdXn | sed -e 's/Would remove //g'"
 alias gclean="git clean -fdXi"
-alias git branch -vv | awk '/origin\/.*: gone]/{print$1}'
 alias gms="git merge --squash"
+alias gco='git checkout'
 alias gcm="git checkout main"
+alias gcmsg='git commit --message'
 alias gcz="git hook run --ignore-missing pre-commit && npx git-cz --disable-emoji -n --body '' --scope '' --breaking '' --issues '' --lerna ''"
 alias gcmsgc="git log -1 --pretty=%B | pbcopy"
 alias gspell="mkdir -p .git/hooks && touch .git/hooks/commit-msg && cat ~/.bash/bin/commit-msg .git/hooks/commit-msg > .git/hooks/commit-msg.new; mv -f .git/hooks/commit-msg.new .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg"
@@ -59,7 +61,6 @@ alias n='npm run'
 alias ni='npm i'
 alias yr='jq .scripts package.json'
 alias rm-node-modules='find . -name "node_modules" -type d -prune -exec rm -rf "{}" +'
-alias m='micro'
 alias xmlpp='xmllint --format -'
 alias phpcs="find . -name *.php -exec phpcs --standard=Zend '{}' \;"
 

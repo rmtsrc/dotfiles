@@ -24,16 +24,15 @@
 # Stop on error
 set -e
 
-MONITOR=32 # 16 intel - 17 nvidia - 15 wayland
 STEP=25    # Step Up/Down brightness by: 25%
 FEATURE=10 # Brightness
 
 if [[ "$1" =~ ^[0-9]+$ ]]; then
   NewValue=$1
 else
-  CurValue=$(ddcutil --bus=$MONITOR -t getvcp $FEATURE)
+  CurValue=$(ddcutil -t getvcp $FEATURE)
   if [ $? -ne 0 ]; then
-    CurValue=$(ddcutil --bus=$MONITOR -t getvcp $FEATURE)
+    CurValue=$(ddcutil -t getvcp $FEATURE)
   fi
 
   CurValue="$(echo $CurValue | awk '{print $4}')"
@@ -44,4 +43,4 @@ fi
 [[ "$NewValue" -lt 10 ]] && NewValue=0    # Negative not allowed
 [[ "$NewValue" -gt 100 ]] && NewValue=100 # Can't go over 100
 
-for i in 1 2; do ddcutil --bus=$MONITOR setvcp $FEATURE $NewValue && break; done # Set new brightness
+for i in 1 2; do ddcutil setvcp $FEATURE $NewValue && break; done # Set new brightness

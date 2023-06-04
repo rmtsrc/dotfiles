@@ -58,6 +58,7 @@
 	cl = clone --recursive
 	clig = clean -d -f -X -i
 	co = checkout
+	cam = commit --amend
 	cot = checkout --track -b
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -74,6 +75,7 @@
 	p = pull
 	pr = pull --rebase
 	pu = push
+	pf = push --force-with-lease
 	rm-br = push origin --delete
 	s = status -s
 	sclone = clone --depth=1

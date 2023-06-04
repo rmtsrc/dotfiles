@@ -39,8 +39,15 @@ alias gcmsgc="git log -1 --pretty=%B | pbcopy"
 alias gspell="mkdir -p .git/hooks && touch .git/hooks/commit-msg && cat ~/.bash/bin/commit-msg .git/hooks/commit-msg > .git/hooks/commit-msg.new; mv -f .git/hooks/commit-msg.new .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg"
 
 # Docker
-alias fig="docker-compose"
-alias fig-kill-rm="fig kill && fig rm -f"
+alias d="docker"
+alias dps="docker ps -a"
+alias dc="docker compose"
+alias dcps="docker compose ps -a"
+alias dcu="docker compose up -d"
+alias dcd="docker compose down -v"
+alias dcl="docker compose logs -f"
+alias dcdu="docker compose down -v && docker compose up -d && docker compose logs -f"
+
 alias docker-stop-all="docker kill \$(docker ps -q)"
 alias docker-restart-stopped="docker restart \$(docker ps -a -q -f status=exited)"
 alias docker-rm-stopped="docker rm -v \$(docker ps -a -q -f status=exited)"
@@ -49,6 +56,7 @@ alias docker-rm-untagged-images="docker rmi \$(docker images -f 'dangling=true' 
 alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
 alias lzd="docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/jesseduffield/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker"
+alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest"
 
 # Updates
 alias atom-up='apm update --confirm false'

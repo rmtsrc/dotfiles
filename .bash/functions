@@ -203,3 +203,8 @@ if [ "$TMUX" ]; then
     tmux setenv -g CONNECTED_HOST $(hostname)
   }
 fi
+
+convert2webm() {
+  ffmpeg -i $1 -b:v 0 -crf 30 -pass 1 -an -f webm -y /dev/null
+  ffmpeg -i $1 -b:v 0 -crf 30 -pass 2 $1.webm
+}

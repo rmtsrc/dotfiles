@@ -9,17 +9,8 @@ function usbDeviceCallback(data)
     elseif (data["eventType"] == "removed") then
       setKeyboardLayoutBritish()
     end
-    hs.reload()
   end
 end
 
 usbWatcher = hs.usb.watcher.new(usbDeviceCallback)
 usbWatcher:start()
-
-hs.urlevent.bind("setKeyboardLayoutBritishPC", function(eventName, params)
-  setKeyboardLayoutBritishPC()
-end)
-
-hs.urlevent.bind("setKeyboardLayoutBritish", function(eventName, params)
-  setKeyboardLayoutBritish()
-end)

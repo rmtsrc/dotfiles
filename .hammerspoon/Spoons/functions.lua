@@ -120,11 +120,21 @@ function typeDate()
 end
 
 function setKeyboardLayoutBritish()
-  hs.keycodes.setLayout("British")
   hs.execute("ln -sf ~/.hammerspoon/keyboard-built-in.lua ~/.hammerspoon/keyboard-current-extra.lua")
+  hs.reload()
+  hs.keycodes.setLayout("British")
 end
 
+hs.urlevent.bind("setKeyboardLayoutBritishPC", function(eventName, params)
+  setKeyboardLayoutBritishPC()
+end)
+
 function setKeyboardLayoutBritishPC()
-  hs.keycodes.setLayout("British – PC")
   hs.execute("ln -sf ~/.hammerspoon/keyboard-usb.lua ~/.hammerspoon/keyboard-current-extra.lua")
+  hs.reload()
+  hs.keycodes.setLayout("British – PC")
 end
+
+hs.urlevent.bind("setKeyboardLayoutBritish", function(eventName, params)
+  setKeyboardLayoutBritish()
+end)

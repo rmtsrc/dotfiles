@@ -59,8 +59,7 @@ alias lzd="docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~
 alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest"
 
 # Updates
-alias atom-up='apm update --confirm false'
-alias nvm-up='nvm install node && nvm alias default node'
+alias nvm-up='nvm install --lts'
 
 # Code
 alias cat='bat'
@@ -80,6 +79,7 @@ alias change-ssh-pw='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'
 alias parrot='curl parrot.live'
 alias ptop='bpytop'
+alias ack='ag'
 
 alias write-speed="time dd if=/dev/zero bs=1024k of=tstfile count=1024"
 alias read-speed="time dd if=tstfile bs=1024k of=/dev/null count=1024"

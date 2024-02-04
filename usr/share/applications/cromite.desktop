@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Icon=/home/seb/Pictures/System/Cromite.png
+Name=Cromite
+Name[en]=Cromite
+Name[en_GB]=Cromite
+Name[en_GB.UTF-8]=Cromite
+Exec=/home/seb/Applications/Cromite/chrome %U
+Hidden=false
+NoDisplay=false
+StartupNotify=false
+Terminal=false
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;

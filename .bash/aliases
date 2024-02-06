@@ -55,8 +55,8 @@ alias docker-rm-all="docker rm -v -f \$(docker ps -q -a)"
 alias docker-rm-untagged-images="docker rmi \$(docker images -f 'dangling=true' -q)"
 alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
 alias docker-nginx-proxy="docker run -d --name nginx-proxy -p 80:80 --restart="always" -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy"
-alias lzd="docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/jesseduffield/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker"
-alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest"
+alias lzd="docker run --rm -it --pull always -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/jesseduffield/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker"
+alias ctop="docker run --rm -ti --name=ctop --pull always --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest"
 
 # Updates
 alias nvm-up='nvm install --lts'

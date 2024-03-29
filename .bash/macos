@@ -1,6 +1,6 @@
 # MacOS
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gpg-agent/libexec:$HOME/.rd/bin:$PATH:$HOME/bin:$HOME/.bash/bin"
-MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
+export PATH="/usr/local/sbin:/usr/local/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/gpg-agent/libexec:$HOME/.rd/bin:$PATH:$HOME/bin:$HOME/.bash/bin"
+MANPATH="/opt/homebrew/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -50,8 +50,8 @@ gpg_init
 export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | cut -d= -f2 | sed -e 's/ //g')
 
 # ssh
-export SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
-
 if ssh-add -l | grep -q 'no identities'; then
-  ssh-add --apple-use-keychain $SSH_KEY_PATH &>/dev/null
+  for KEY in $(ls $HOME/.ssh/id_ed25519* | grep -v \.pub); do
+    ssh-add --apple-use-keychain ${KEY} &>/dev/null
+  done
 fi

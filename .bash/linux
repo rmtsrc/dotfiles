@@ -8,7 +8,20 @@ if [[ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-export QT_QPA_PLATFORMTHEME=qt5ct
+if [[ "$DESKTOP_SESSION" == "plasma" ]]; then
+  alias open="dolphin >/dev/null 2>&1 &"
+  export SSH_ASKPASS="/usr/bin/ksshaskpass"
+fi
 
-alias open="nautilus"
+if [[ "$DESKTOP_SESSION" == "gnome" ]]; then
+  alias open="nautilus >/dev/null 2>&1 &"
+  export QT_QPA_PLATFORMTHEME=qt5ct
+fi
+
+if pgrep -u $USER ssh-agent >/dev/null && ssh-add -l | grep -q 'no identities'; then
+  for KEY in $(ls $HOME/.ssh/id_ed25519* | grep -v \.pub); do
+    ssh-add -q ${KEY} </dev/null
+  done
+fi
+
 alias reboot-to-bios="systemctl reboot --firmware-setup"

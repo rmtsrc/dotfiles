@@ -24,4 +24,7 @@ if pgrep -u $USER ssh-agent >/dev/null && ssh-add -l | grep -q 'no identities'; 
   done
 fi
 
+alias pbcopy="wl-copy"
+alias pbpaste="wl-paste"
+
 alias reboot-to-bios="systemctl reboot --firmware-setup"

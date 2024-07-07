@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-# Usage `$scan bank bank-name-statement`
+# Usage `scan.sh bank bank-name-statement`
 # Saves files in `~/Documents/Archive/banking/1970/1970-12-25-bank-name.jpg`
+
+# Usage `scan.sh bank bank-name-statement ~/Documents/Scans`
+# Saves files in `~/Documents/Scans/banking/1970/1970-12-25-bank-name.jpg`
 
 # `sudo pamac install tesseract tesseract-data-eng`
 # set -x
@@ -9,32 +12,47 @@
 TOPIC=$1
 SUBJECT=$2
 
+if [[ -z "$TOPIC" ]] || [[ -z "$SUBJECT" ]]; then
+  echo "Usage: scan.sh bank bank-name-statement (optional location: ~/Documents/Scans)"
+  echo "Saves files in: ~/Documents/Scans/banking/1970/1970-12-25-bank-name.jpg"
+  exit
+fi
+
 DATE=$(date +%Y-%m-%d)
 YEAR=$(date +%Y)
 NAME="$DATE-$SUBJECT"
+LOCATION=${3:-$HOME/Documents/Archive}
+FULL_LOCATION=$LOCATION/$TOPIC/$YEAR
+FILE_PREFIX="$FULL_LOCATION/$NAME-PAGE"
 
-mkdir -p ~/Documents/Archive/$TOPIC/$YEAR
+mkdir -p $FULL_LOCATION
 
-times=1
+page=1
 function scan {
-  scanimage --device-name "genesys:libusb:003:011" --resolution 300 --mode color --format jpeg >~/Documents/Archive/$TOPIC/$YEAR/$NAME-$times.jpg
+  page_file="$page"
+  if [[ ${#page} -lt 2 ]]; then
+    page_file="0$page"
+  fi
+
+  # List scanners via: `scanimage --help` or `lsusb`
+  scanimage --device-name "genesys:libusb:003:012" --resolution 300 --mode color --format jpeg --progress >$FILE_PREFIX-$page_file.jpg
 
   read -p "Scan another page? " -n 1 -r
   echo # move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    times=$((times + 1))
+    page=$((page + 1))
     scan
   fi
 }
 scan
 
-for file in ~/Documents/Archive/$TOPIC/$YEAR/$NAME*.jpg; do
+for file in $FILE_PREFIX-*.jpg; do
   tesseract $file $file
 done
 
-for n in {0..100}; do
-  cat ~/Documents/Archive/$TOPIC/$YEAR/$NAME-$n.jpg.txt >>~/Documents/Archive/$TOPIC/$YEAR/$NAME.txt 2>/dev/null
+for n in $FILE_PREFIX-*.jpg.txt; do
+  cat $n >>$FULL_LOCATION/$NAME.txt 2>/dev/null
 done
 
-convert ~/Documents/Archive/$TOPIC/$YEAR/$NAME*.jpg ~/Documents/Archive/$TOPIC/$YEAR/$NAME.pdf
-rm -f ~/Documents/Archive/$TOPIC/$YEAR/$NAME-*
+convert $FILE_PREFIX-*.jpg $FULL_LOCATION/$NAME.pdf
+rm -f $FILE_PREFIX-*

@@ -12,6 +12,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Node/NVM
 source ~/.bash/exports.nvm
+alias npm-check-updates="npx npm-check-updates"
 
 # Python
 if type "pyenv" >/dev/null; then

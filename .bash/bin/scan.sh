@@ -35,7 +35,7 @@ function scan {
   fi
 
   # List scanners via: `scanimage --help` or `lsusb`
-  scanimage --device-name "genesys:libusb:003:012" --resolution 300 --mode color --format jpeg --progress >$FILE_PREFIX-$page_file.jpg
+  scanimage --device-name "genesys:libusb:003:010" --resolution 300 --mode color --format jpeg --progress >$FILE_PREFIX-$page_file.jpg
 
   read -p "Scan another page? " -n 1 -r
   echo # move to a new line
@@ -54,5 +54,5 @@ for n in $FILE_PREFIX-*.jpg.txt; do
   cat $n >>$FULL_LOCATION/$NAME.txt 2>/dev/null
 done
 
-convert $FILE_PREFIX-*.jpg $FULL_LOCATION/$NAME.pdf
+magick $FILE_PREFIX-*.jpg $FULL_LOCATION/$NAME.pdf
 rm -f $FILE_PREFIX-*

@@ -35,7 +35,7 @@ function scan {
   fi
 
   # List scanners via: `scanimage --help` or `lsusb`
-  scanimage --device-name "genesys:libusb:003:010" --resolution 300 --mode color --format jpeg --progress >$FILE_PREFIX-$page_file.jpg
+  scanimage --device-name "genesys:libusb:003:011" --resolution 300 --mode color --format jpeg --progress >$FILE_PREFIX-$page_file.jpg
 
   read -p "Scan another page? " -n 1 -r
   echo # move to a new line

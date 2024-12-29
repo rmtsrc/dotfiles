@@ -82,6 +82,9 @@
 	st = status
 	up = pull
 	discard = checkout -p
+[fetch]
+	prune = true
+	prunetags = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

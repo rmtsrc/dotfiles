@@ -1,69 +1,16 @@
- function splitWindowLeft()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
+function windowMoveAndResize(direction)
+  return function()
+    local app = hs.application.frontmostApplication()
+    app:selectMenuItem({"Window", "Move & Resize", direction})
+  end
 end
 
-function splitWindowRight()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
+function windowFill()
+  local app = hs.application.frontmostApplication()
+  app:selectMenuItem({"Window", "Fill"})
 end
 
-function splitWindowTop()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h / 2
-  win:setFrame(f)
-end
-
-function splitWindowBottom()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y + (max.h / 2)
-  f.w = max.w
-  f.h = max.h / 2
-  win:setFrame(f)
-end
-
-function maximizeWindow()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
-  win:setFrame(f)
-end
-
-function growWindowWidth()
+function windowGrowWidth()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -73,7 +20,7 @@ function growWindowWidth()
   win:setFrame(f)
 end
 
-function shrinkWindowWidth()
+function windowShrinkWidth()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -83,7 +30,7 @@ function shrinkWindowWidth()
   win:setFrame(f)
 end
 
-function moveWindowToDisplay(d)
+function windowMoveToDisplay(d)
   return function()
     local displays = hs.screen.allScreens()
     local win = hs.window.focusedWindow()
@@ -120,7 +67,7 @@ function typeDate()
 end
 
 function setKeyboardLayoutBritish()
-  hs.execute("ln -sf ~/.hammerspoon/keyboard-built-in.lua ~/.hammerspoon/keyboard-current-extra.lua")
+  hs.execute("ln -sf ~/.hammerspoon/keyboard-with-fn.lua ~/.hammerspoon/keyboard-current-extra.lua")
   hs.reload()
   hs.keycodes.setLayout("British")
 end
@@ -130,7 +77,7 @@ hs.urlevent.bind("setKeyboardLayoutBritishPC", function(eventName, params)
 end)
 
 function setKeyboardLayoutBritishPC()
-  hs.execute("ln -sf ~/.hammerspoon/keyboard-usb.lua ~/.hammerspoon/keyboard-current-extra.lua")
+  hs.execute("ln -sf ~/.hammerspoon/keyboard-without-fn.lua ~/.hammerspoon/keyboard-current-extra.lua")
   hs.reload()
   hs.keycodes.setLayout("British – PC")
 end

@@ -208,3 +208,11 @@ convert2webm() {
   ffmpeg -i $1 -b:v 0 -crf 30 -pass 1 -an -f webm -y /dev/null
   ffmpeg -i $1 -b:v 0 -crf 30 -pass 2 $1.webm
 }
+
+convertPngToWebp() {
+  for file in $(find src/images -type f -name "*.png"); do
+    echo "Converting $file to WebP..."
+    cwebp "$file" -near_lossless 60 -o "${file%.*}.webp"
+    rm -f "$file"
+  done
+}

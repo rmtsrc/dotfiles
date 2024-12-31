@@ -72,6 +72,7 @@ bindkey "^[[F" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^F" forward-word
 bindkey "^B" backward-word
+bindkey "\ew" backward-kill-word
 
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   bindkey "^A" beginning-of-line

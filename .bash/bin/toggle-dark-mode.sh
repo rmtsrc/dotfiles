@@ -17,12 +17,23 @@ if [[ "$DESKTOP_SESSION" == "gnome" ]]; then
 
   CURRENT_THEME=$(gsettings get org.gnome.desktop.interface color-scheme)
 
+  SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+  EXTRA_SCRIPT="$SCRIPT_DIR/toggle-dark-mode.extra.sh"
+
   if [[ "$CURRENT_THEME" == "'default'" ]]; then
     gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
     gsettings set org.gnome.desktop.interface gtk-theme "$DARK_GTK_THEME"
+
+    if [ -f "$EXTRA_SCRIPT" ]; then
+      bash "$EXTRA_SCRIPT" dark
+    fi
   else
     gsettings set org.gnome.desktop.interface color-scheme "default"
     gsettings set org.gnome.desktop.interface gtk-theme "$LIGHT_GTK_THEME"
+
+    if [ -f "$EXTRA_SCRIPT" ]; then
+      bash "$EXTRA_SCRIPT" light
+    fi
   fi
 fi
 

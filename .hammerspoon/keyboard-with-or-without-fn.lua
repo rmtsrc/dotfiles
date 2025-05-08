@@ -1,0 +1,6 @@
+hs.hotkey.bind({"ctrl", "cmd"}, "d", toggleDarkMode)
+hs.hotkey.bind({"ctrl", "shift"}, "d", typeDate)
+hs.hotkey.bind({"alt", "cmd"}, "delete", function()
+  hs.timer.doAfter(1, systemSleep)
+end)
+hs.hotkey.bind({"atl", "cmd"}, "forwarddelete", systemShutdown)

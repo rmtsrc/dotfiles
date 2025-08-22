@@ -1,11 +1,3 @@
-if [[ $OSTYPE == 'darwin'* ]]; then
-  [ -r ~/.bash/macos ] && source ~/.bash/macos
-elif [[ "$(</proc/sys/kernel/osrelease)" == *WSL* ]]; then
-  [ -r ~/.bash/wsl ] && source ~/.bash/wsl
-else
-  [ -r ~/.bash/linux ] && source ~/.bash/linux
-fi
-
 # Load our dotfiles like ~/.bash/bash_prompt, etc…
 #   ~/.bash/extra can be used for settings you don’t want to commit,
 #   Use it to configure your PATH, thus it being first in line.
@@ -13,6 +5,14 @@ for file in ~/.bash/{exports,aliases,functions,plugins.zsh,extra}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
+
+if [[ $OSTYPE == 'darwin'* ]]; then
+  [ -r ~/.bash/macos ] && source ~/.bash/macos
+elif [[ "$(</proc/sys/kernel/osrelease)" == *WSL* ]]; then
+  [ -r ~/.bash/wsl ] && source ~/.bash/wsl
+else
+  [ -r ~/.bash/linux ] && source ~/.bash/linux
+fi
 
 if command -v starship &>/dev/null; then
   [[ "$TERM_PROGRAM" == "WarpTerminal" ]] && export STARSHIP_CONFIG=~/.config/starship-warp.toml

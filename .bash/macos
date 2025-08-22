@@ -18,6 +18,9 @@ alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'
 alias update='brew-up'
 alias brew-up='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
 alias mac-up='sudo softwareupdate --install --all'
+alias brew-export="brew bundle dump --force --file=$BREW_FILE"
+alias brew-import="brew bundle install --file=$BREW_FILE"
+alias brew-import-cleanup="brew bundle cleanup --file=$BREW_FILE"
 
 # App links
 #alias vi="/usr/bin/vim"
@@ -26,6 +29,8 @@ alias ack='ACK_PAGER_COLOR="less -x4SRFX" /usr/local/bin/ack'
 alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args $(pwd)"
 alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+alias disk-usage="GSETTINGS_SCHEMA_DIR=/opt/homebrew/share/glib-2.0/schemas/ baobab"
 
 alias keyboard-laptop="open -g hammerspoon://setKeyboardLayoutBritish"
 alias keyboard-ext="open -g hammerspoon://setKeyboardLayoutBritishPC"

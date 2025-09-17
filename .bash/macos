@@ -10,7 +10,6 @@ fi
 
 export HOMEBREW_NO_ANALYTICS=1
 
-alias rm="trash"
 alias docker-start="colima start"
 alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'"
 
@@ -42,6 +41,25 @@ alias keyboard-ext="open -g hammerspoon://setKeyboardLayoutBritishPC"
 # Android
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 source ~/.bash/android
+
+# rm to trash
+rm() {
+  local args=()
+
+  # Filter out rm flags like -r, -f, -Rf, etc.
+  for arg in "$@"; do
+    if [[ "$arg" != -* ]]; then
+      args+=("$arg")
+    fi
+  done
+
+  if [ ${#args[@]} -eq 0 ]; then
+    echo "rm: missing operand"
+    return 1
+  fi
+
+  trash "${args[@]}"
+}
 
 # GPG
 gpg_init() {

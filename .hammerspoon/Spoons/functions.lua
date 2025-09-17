@@ -66,6 +66,16 @@ function typeDate()
   hs.eventtap.keyStrokes(os.date("%Y-%m-%d"))
 end
 
+function showClipboard()
+  -- Press Cmd + Space (open Spotlight)
+  hs.eventtap.keyStroke({"cmd"}, "space", 0)
+
+  -- Slight delay before pressing Cmd + 4
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.keyStroke({"cmd"}, "4", 0)
+  end)
+end
+
 function setKeyboardLayoutBritish()
   hs.execute("ln -sf ~/.hammerspoon/keyboard-with-fn.lua ~/.hammerspoon/keyboard-current-extra.lua")
   hs.reload()

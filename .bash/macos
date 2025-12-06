@@ -23,8 +23,8 @@ alias brew-import-cleanup="brew bundle cleanup --file=$BREW_FILE"
 
 # App links
 #alias vi="/usr/bin/vim"
-#alias vim="/usr/local/bin/mvim"
-alias ack='ACK_PAGER_COLOR="less -x4SRFX" /usr/local/bin/ack'
+#alias vim="/opt/homebrew/bin/mvim"
+alias ack='ACK_PAGER_COLOR="less -x4SRFX" /opt/homebrew/bin/ack'
 alias gitx="open /opt/homebrew-cask/Caskroom/ssp-gitx/0.12/GitX.app --args $(pwd)"
 alias firefox-profile="/Applications/Firefox.app/Contents/MacOS/firefox -profilemanager"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"

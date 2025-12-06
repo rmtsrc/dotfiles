@@ -19,7 +19,8 @@ alias show-cursor="tput cnorm"
 
 # App links
 alias gource='gource --multi-sampling --seconds-per-day 3 --loop --key --user-image-dir .git/avatar/ --follow-user "..."'
-alias tmux='tmux new -As0' # The -A flag makes new-session behave like attach-session if session-name already exists; in this case, -D behaves like -d to attach-session
+alias t='tmux new -As0' # The -A flag makes new-session behave like attach-session if session-name already exists; in this case, -D behaves like -d to attach-session
+alias tls='tmux ls'
 
 # Git
 alias g='git'

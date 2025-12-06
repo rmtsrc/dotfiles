@@ -12,6 +12,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Node/NVM
 source ~/.bash/exports.nvm
+export npm_config_ignore_scripts=true
 alias npm-check-updates="npx npm-check-updates"
 
 # Python

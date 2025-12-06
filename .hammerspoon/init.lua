@@ -5,3 +5,4 @@ require "Spoons/SkyRocket"
 require "keyboard-with-or-without-fn"
 require "keyboard-with-fn-no-overlap"
 require "keyboard-current-extra"
+pcall(require, "Spoons/extra")

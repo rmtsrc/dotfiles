@@ -1,10 +1,12 @@
 [user]
 	name = rmt/src
 	email = 144435+rmtsrc@users.noreply.github.com
-	# signingkey =
+	signingkey = ~/.ssh/id_ed25519.pub
 [commit]
-	# gpgsign = true
-	template = ~/.stCommitMsg
+	gpgsign = true
+	# template = ~/.stCommitMsg
+[gpg]
+	format = ssh
 [push]
 	default = simple
 	autoSetupRemote = true

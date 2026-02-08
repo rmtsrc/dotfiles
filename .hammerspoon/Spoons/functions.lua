@@ -95,3 +95,13 @@ end
 hs.urlevent.bind("setKeyboardLayoutBritish", function(eventName, params)
   setKeyboardLayoutBritish()
 end)
+
+function windowResize1080p()
+  local win = hs.window.focusedWindow()
+  if win then
+    local f = win:frame()
+    f.w = 1920
+    f.h = 1080
+    win:setFrame(f)
+  end
+end

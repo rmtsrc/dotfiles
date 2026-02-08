@@ -1,9 +1,7 @@
-${HOME}/.local/bin/wsl-ssh-agent-relay start
-export SSH_AUTH_SOCK=${HOME}/.var/run/wsl-ssh-agent.sock
-
 alias update="sudo apt update && sudo apt full-upgrade && sudo apt autoremove"
 alias bat="batcat"
 alias docker-start="sudo service docker start"
+alias docker-up="docker-start"
 
 alias pbcopy="xsel --input --clipboard"
 alias pbpaste="xsel --output --clipboard"

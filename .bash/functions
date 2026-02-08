@@ -15,7 +15,7 @@ function cdf() { # short for cdfinder
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
-function function server() {
+function server() {
   local port="${1:-8000}"
   open "http://localhost:${port}/"
   # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
@@ -137,16 +137,6 @@ function camerausedby() {
 function webmify() {
   ffmpeg -i $1 -vcodec libvpx -acodec libvorbis -isync -copyts -aq 80 -threads 3 -qmax 30 -y $2 $1.webm
 }
-
-function gpg_init() {
-  if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
-    source ~/.gnupg/.gpg-agent-info
-    export GPG_AGENT_INFO
-  else
-    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
-  fi
-}
-#gpg_init
 
 function git-up() {
   git checkout master && git pr && git checkout - && git rebase master

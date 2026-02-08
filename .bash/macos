@@ -1,5 +1,5 @@
 # MacOS
-export PATH="/usr/local/sbin:/usr/local/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/gpg-agent/libexec:$HOME/.rd/bin:$PATH:$HOME/bin:$HOME/.bash/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:$HOME/.rd/bin:$PATH:$HOME/bin:$HOME/.bash/bin"
 MANPATH="/opt/homebrew/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -11,6 +11,7 @@ fi
 export HOMEBREW_NO_ANALYTICS=1
 
 alias docker-start="colima start"
+alias docker-up="docker-start"
 alias notify="osascript -e 'display notification \"Done!\" with title \"iTerm\"'"
 
 # Updates, Homebrew & Cask
@@ -60,17 +61,6 @@ rm() {
 
   trash "${args[@]}"
 }
-
-# GPG
-gpg_init() {
-  if ! pgrep -x "gpg-agent" >/dev/null; then
-    eval $(gpg-agent --daemon)
-  fi
-}
-gpg_init
-
-# Add the following to your shell init to set up gpg-agent automatically for every shell
-export KEYGRIP=$(gpg --fingerprint --fingerprint | grep fingerprint | tail -1 | cut -d= -f2 | sed -e 's/ //g')
 
 # ssh
 if ssh-add -l | grep -q 'no identities'; then

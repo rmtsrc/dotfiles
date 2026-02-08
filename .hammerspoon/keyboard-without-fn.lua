@@ -1,6 +1,7 @@
 hs.hotkey.bind({"ctrl", "alt"}, "Left", windowMoveAndResize("Left"))
 hs.hotkey.bind({"ctrl", "alt"}, "Right", windowMoveAndResize("Right"))
 hs.hotkey.bind({"ctrl", "alt"}, "Up", windowFill)
+hs.hotkey.bind({"ctrl", "alt"}, "Down", windowResize1080p)
 hs.hotkey.bind({"alt", "cmd"}, "Right", windowGrowWidth)
 hs.hotkey.bind({"alt", "cmd"}, "Left", windowShrinkWidth)
 hs.hotkey.bind({"alt", "cmd"}, "Up", windowMoveAndResize("Top"))

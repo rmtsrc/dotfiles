@@ -76,6 +76,7 @@ alias phpcs="find . -name *.php -exec phpcs --standard=Zend '{}' \;"
 # Others
 eval "$(direnv hook zsh)"
 [ -x "$(command -v thefuck)" ] && eval $(thefuck --alias)
+alias reset-permissions="find . -type d -exec chmod 755 {} +; find . -type f -exec chmod 644 {} +"
 alias please="fuck"
 alias change-ssh-pw='ssh-keygen -f ~/.ssh/id_rsa -p'
 alias weather='curl -4 wttr.in/London'

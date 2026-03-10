@@ -39,6 +39,9 @@ alias gcmsg='git commit --message'
 alias gcz="git hook run --ignore-missing pre-commit && npx git-cz --disable-emoji -n --body '' --scope '' --breaking '' --issues '' --lerna ''"
 alias gcmsgc="git log -1 --pretty=%B | pbcopy"
 alias gspell="mkdir -p .git/hooks && touch .git/hooks/commit-msg && cat ~/.bash/bin/commit-msg .git/hooks/commit-msg > .git/hooks/commit-msg.new; mv -f .git/hooks/commit-msg.new .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg"
+alias glog="git log --graph --all --decorate --pretty=format:'%C(auto)%h%d %s %C(black)%C(bold)<%an>%Creset'"
+alias glog-full="git log --format=\"%C(auto)commit %H%nAuthor: %an <%ae>%nAuthorDate: %ai%nCommit: %cn <%ce>%nCommitDate: %ci%n%n%w(0,4,4)%B\""
+alias git-rebase-preserve-metadata="git -c rebase.instructionFormat='%s%nexec sh -c '\''if [ \"%ae\" = \"$(git config user.email)\" ]; then GIT_COMMITTER_DATE=\"%cD\" GIT_COMMITTER_NAME=\"%cn\" GIT_COMMITTER_EMAIL=\"%ce\" git commit --amend --no-edit --date=\"%aD\" --author=\"%an <%ae>\"; else GIT_COMMITTER_DATE=\"%cD\" GIT_COMMITTER_NAME=\"%cn\" GIT_COMMITTER_EMAIL=\"%ce\" git commit --amend --no-edit --date=\"%aD\" --author=\"%an <%ae>\" --no-gpg-sign; fi'\''' rebase -i"
 
 # Docker
 alias d="docker"

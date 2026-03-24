@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # https://gist.github.com/przemkow/bf1127debfe285b0de4e49acd6b04823
 set -e
 

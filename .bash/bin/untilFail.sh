@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 counter=0
 while "$@"; do

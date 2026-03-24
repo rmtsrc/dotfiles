@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Get the target commit from the first argument
 TARGET_HASH=$1

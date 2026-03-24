@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # <bitbar.title>Clock with calendar</bitbar.title>
 # <bitbar.version>v1.0</bitbar.version>

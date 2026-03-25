@@ -1,49 +1,43 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-if [[ "$DESKTOP_SESSION" == "plasma" ]]; then
+# GNOME
+GSETTINGS=$(command -v gsettings || true)
+
+# KDE
+LOOKANDFEEL=$(command -v lookandfeeltool || true)
+
+if [[ -n "$LOOKANDFEEL" ]]; then
   LIGHT_KDE_THEME='org.kde.breeze.desktop'
   DARK_KDE_THEME='org.kde.breezedark.desktop'
 
-  if grep -q "$DARK_KDE_THEME" ~/.config/kdeglobals; then
-    lookandfeeltool -a $LIGHT_KDE_THEME
+  if grep -q "$DARK_KDE_THEME" ~/.config/kdeglobals 2>/dev/null; then
+    "$LOOKANDFEEL" -a "$LIGHT_KDE_THEME"
+    MODE="light"
   else
-    lookandfeeltool -a $DARK_KDE_THEME
+    "$LOOKANDFEEL" -a "$DARK_KDE_THEME"
+    MODE="dark"
   fi
 fi
 
-if [[ "$DESKTOP_SESSION" == "gnome" ]]; then
-  LIGHT_GTK_THEME='Adwaita'
-  DARK_GTK_THEME='Adwaita-dark'
+if [[ -n "$GSETTINGS" ]]; then
+  CURRENT_SCHEME=$("$GSETTINGS" get org.gnome.desktop.interface color-scheme)
+  if [[ "$CURRENT_SCHEME" == "'default'" ]]; then
+    "$GSETTINGS" set org.gnome.desktop.interface color-scheme "prefer-dark"
+    "$GSETTINGS" set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 
-  CURRENT_THEME=$(gsettings get org.gnome.desktop.interface color-scheme)
-
-  SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
-  EXTRA_SCRIPT="$SCRIPT_DIR/toggle-dark-mode.extra.sh"
-
-  if [[ "$CURRENT_THEME" == "'default'" ]]; then
-    gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-    gsettings set org.gnome.desktop.interface gtk-theme "$DARK_GTK_THEME"
-
-    if [ -f "$EXTRA_SCRIPT" ]; then
-      bash "$EXTRA_SCRIPT" dark
-    fi
+    MODE="dark"
   else
-    gsettings set org.gnome.desktop.interface color-scheme "default"
-    gsettings set org.gnome.desktop.interface gtk-theme "$LIGHT_GTK_THEME"
+    "$GSETTINGS" set org.gnome.desktop.interface color-scheme "default"
+    "$GSETTINGS" set org.gnome.desktop.interface gtk-theme "Adwaita"
 
-    if [ -f "$EXTRA_SCRIPT" ]; then
-      bash "$EXTRA_SCRIPT" light
-    fi
+    MODE="light"
   fi
 fi
 
-KONSOLE_CONFIG=~/.config/konsolerc
-if [ -f $KONSOLE_CONFIG ]; then
-  if grep -q "DefaultProfile=Light" $KONSOLE_CONFIG; then
-    sed -i "s/DefaultProfile=Light/DefaultProfile=Dark/g" $KONSOLE_CONFIG
-    [[ "$DESKTOP_SESSION" == "gnome" ]] && sed -i "s/ColorScheme=KvGnome$/ColorScheme=KvGnomeDark/g" $KONSOLE_CONFIG
-  else
-    sed -i "s/DefaultProfile=Dark/DefaultProfile=Light/g" $KONSOLE_CONFIG
-    [[ "$DESKTOP_SESSION" == "gnome" ]] && sed -i "s/ColorScheme=KvGnomeDark$/ColorScheme=KvGnome/g" $KONSOLE_CONFIG
-  fi
+# Optional hook
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+EXTRA_SCRIPT="$SCRIPT_DIR/toggle-dark-mode.extra.sh"
+if [[ -f "$EXTRA_SCRIPT" ]]; then
+  bash "$EXTRA_SCRIPT" "$MODE"
 fi

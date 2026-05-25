@@ -1,43 +1,62 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# GNOME
-GSETTINGS=$(command -v gsettings || true)
+# Usage: toggle-dark-mode.sh [light|dark]
+# If no argument is provided, it will toggle based on the current state.
 
-# KDE
+# Tools
+GSETTINGS=$(command -v gsettings || true)
 LOOKANDFEEL=$(command -v lookandfeeltool || true)
 
-if [[ -n "$LOOKANDFEEL" ]]; then
-  LIGHT_KDE_THEME='org.kde.breeze.desktop'
-  DARK_KDE_THEME='org.kde.breezedark.desktop'
+# Determine the Target Mode
+# Priority: Argument ($1) > Detection > Default (light)
+INPUT_ARG="${1:-}"
+TARGET_MODE=""
 
-  if grep -q "$DARK_KDE_THEME" ~/.config/kdeglobals 2>/dev/null; then
-    "$LOOKANDFEEL" -a "$LIGHT_KDE_THEME"
-    MODE="light"
-  else
-    "$LOOKANDFEEL" -a "$DARK_KDE_THEME"
-    MODE="dark"
+case "$INPUT_ARG" in
+  light|dark)
+    TARGET_MODE="$INPUT_ARG"
+    ;;
+esac
+
+if [[ -z "$TARGET_MODE" ]]; then
+  # No valid argument provided: Perform Toggle Logic
+  if [[ -n "$LOOKANDFEEL" ]]; then
+    # KDE Detection
+    if grep -q "org.kde.breezedark.desktop" ~/.config/kdeglobals 2>/dev/null; then
+      TARGET_MODE="light"
+    else
+      TARGET_MODE="dark"
+    fi
+  elif [[ -n "$GSETTINGS" ]]; then
+    # GNOME Detection
+    CURRENT_SCHEME=$($GSETTINGS get org.gnome.desktop.interface color-scheme)
+    if [[ "$CURRENT_SCHEME" == "'prefer-dark'" ]]; then
+      TARGET_MODE="light"
+    else
+      TARGET_MODE="dark"
+    fi
   fi
 fi
 
+# KDE Apply
+if [[ -n "$LOOKANDFEEL" ]]; then
+  THEME=$([[ "$TARGET_MODE" == "dark" ]] && echo "org.kde.breezedark.desktop" || echo "org.kde.breeze.desktop")
+  "$LOOKANDFEEL" -a "$THEME"
+fi
+
+# GNOME Apply
 if [[ -n "$GSETTINGS" ]]; then
-  CURRENT_SCHEME=$("$GSETTINGS" get org.gnome.desktop.interface color-scheme)
-  if [[ "$CURRENT_SCHEME" == "'default'" ]]; then
-    "$GSETTINGS" set org.gnome.desktop.interface color-scheme "prefer-dark"
-    "$GSETTINGS" set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+  SCHEME=$([[ "$TARGET_MODE" == "dark" ]] && echo "prefer-dark" || echo "default")
+  THEME=$([[ "$TARGET_MODE" == "dark" ]] && echo "Adwaita-dark" || echo "Adwaita")
 
-    MODE="dark"
-  else
-    "$GSETTINGS" set org.gnome.desktop.interface color-scheme "default"
-    "$GSETTINGS" set org.gnome.desktop.interface gtk-theme "Adwaita"
-
-    MODE="light"
-  fi
+  "$GSETTINGS" set org.gnome.desktop.interface color-scheme "$SCHEME"
+  "$GSETTINGS" set org.gnome.desktop.interface gtk-theme "$THEME"
 fi
 
 # Optional hook
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 EXTRA_SCRIPT="$SCRIPT_DIR/toggle-dark-mode.extra.sh"
 if [[ -f "$EXTRA_SCRIPT" ]]; then
-  bash "$EXTRA_SCRIPT" "$MODE"
+  bash "$EXTRA_SCRIPT" "$TARGET_MODE"
 fi

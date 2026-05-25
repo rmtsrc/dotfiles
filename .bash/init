@@ -15,6 +15,5 @@ else
 fi
 
 if command -v starship &>/dev/null; then
-  [[ "$TERM_PROGRAM" == "WarpTerminal" ]] && export STARSHIP_CONFIG=~/.config/starship-warp.toml
   eval "$(starship init zsh)"
 fi

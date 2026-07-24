@@ -72,7 +72,8 @@ alias nr='jq .scripts package.json'
 alias ncu="npx npm-check-updates --format cooldown --cooldown 5 --upgrade"
 alias rm-node-modules='find . -name "node_modules" -type d -prune -exec rm -rf "{}" +'
 alias xmlpp='xmllint --format -'
-alias phpcs="find . -name *.php -exec phpcs --standard=Zend '{}' \;"
+alias herd='json=$(herdr session list --json) && jq -e '"'"'any(.sessions[]; .name == "term" and (.running | not))'"'"' <<<"$json" >/dev/null && herdr session delete term >/dev/null 2>&1; herdr session attach term'
+alias herdq="herdr session stop term; herdr server stop"
 
 # Others
 eval "$(direnv hook zsh)"

@@ -1,0 +1,15 @@
+onboarding = false
+
+[theme]
+name = "nord"
+
+[ui.toast]
+delivery = "terminal"
+
+[keys]
+detach = "prefix+d"
+
+[[keys.command]]
+key = "prefix+q"
+command = "herdr session stop term; herdr server stop"
+description = "quit"

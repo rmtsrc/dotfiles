@@ -13,5 +13,5 @@ keybind = alt+d=new_split:right
 keybind = alt+shift+d=new_split:down
 keybind = alt+[=goto_split:previous
 keybind = alt+]=goto_split:next
-keybind = ctrl+shift+k=clear_screen
+keybind = ctrl+shift+k=text:\x0c
 config-file = "?../ghostty-os-config"

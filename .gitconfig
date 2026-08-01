@@ -18,6 +18,8 @@
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [init]
 	defaultBranch = main
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
 [branch "main"]
 	remote = origin
 	merge = refs/heads/main
